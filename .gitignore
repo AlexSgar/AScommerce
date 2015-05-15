@@ -1,0 +1,11 @@
+/build/
+/bin/
+*.class
+.DS_Store
+.project
+.metadata
+.settings/
+.classpath
+target/
+local.properties
+.loadpath
