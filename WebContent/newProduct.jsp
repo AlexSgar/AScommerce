@@ -41,7 +41,7 @@
 			<div>
 				<h:commandButton value="Submit"  action="#{productController.createProduct}"/>
 			</div>
-			<!-- <h:commandLink action="#{productController.listProducts}"  value="List all Products" /> -->
+			
 		</h:form>
 	</f:view>
 </body>

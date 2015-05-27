@@ -15,27 +15,39 @@ import AScommerce.model.Product;
 import AScommerce.model.ProductFacade;
 import AScommerce.model.Provider;
 
-@ManagedBean(name="productController")
-@SessionScoped
+@ManagedBean(name = "productController")
 public class ProductController {
-	private Long id;
 	
-
+	@ManagedProperty(value="#{param.id}")
+	private Long id;
 	private String name;
 	private String code;
 	private String description;
 	private Float price;
 	private Integer quantityAvaiable;
 	private Product product;
+	private List<Product> products;
 	
 	@EJB(beanName="productFacade")
 	private ProductFacade productFacade;
+
+
+	
 	
 	public String createProduct(){
 		this.product = this.productFacade.createProduct(name, code, description, price, quantityAvaiable);
 		return "product";
 	}
 	
+	public String showProducts(){
+		this.products = this.productFacade.getAllProducts();
+		return "products";
+	}
+	
+	public String findProduct(){
+		this.product = this.productFacade.findProduct(id);
+		return "product";
+	}
 	
 	
 	public String getName() {
@@ -89,12 +101,23 @@ public class ProductController {
 	public Long getId() {
 		return id;
 	}
+	public void setId(Long id){
+		this.id = id;
+	}
 	public Product getProduct() {
 		return product;
 	}
 
 	public void setProduct(Product product) {
 		this.product = product;
+	}
+
+	public List<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Product> products) {
+		this.products = products;
 	}
 }
 

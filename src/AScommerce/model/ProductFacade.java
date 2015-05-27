@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 @Stateless(name="productFacade")
 public class ProductFacade {
@@ -16,6 +17,17 @@ public class ProductFacade {
 		Product p = new Product(name, code, description,price,quantityAvaiable);
 		em.persist(p);
 		return p;
+	}
+	
+	public List<Product> getAllProducts(){
+		TypedQuery<Product> q = em.createNamedQuery("findAllProducts",Product.class);	
+		List<Product> resultList = q.getResultList();
+		return resultList;
+		
+	}
+
+	public Product findProduct(Long id) {
+		return em.find(Product.class, id);
 	}
 
 	
