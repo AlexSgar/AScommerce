@@ -1,5 +1,8 @@
 package AScommerce.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 
@@ -18,8 +21,8 @@ public class CustomerController {
 	private Customer customer;
 	private String name;
 	private String surname;
-	private Date dateOfBirth;
-	private Date dateOfRegistration;
+	private String dateOfBirth;
+	private String dateOfRegistration;
 	private Address address;
 	private String email;
 	private Collection<Order> orders;
@@ -27,7 +30,10 @@ public class CustomerController {
 	@EJB
 	private CustomerFacade customerFacade;
 
-	public String logIn(){
+	public String signUp(){
+		//DateFormat format = new SimpleDateFormat("GG/MM/AAAA");
+		//format.
+		this.customer = this.customerFacade.signUp(name, surname, Calendar.getInstance().getTime(), new Address("xx", "xx", "xx", "xx", "xx"), email);
 		return "home";
 	}
 	
@@ -65,19 +71,19 @@ public class CustomerController {
 		this.surname = surname;
 	}
 
-	public Date getDateOfBirth() {
+	public String getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(Date dateOfBirth) {
+	public void setDateOfBirth(String dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	public Date getDateOfRegistration() {
+	public String getDateOfRegistration() {
 		return dateOfRegistration;
 	}
 
-	public void setDateOfRegistration(Date dateOfRegistration) {
+	public void setDateOfRegistration(String dateOfRegistration) {
 		this.dateOfRegistration = dateOfRegistration;
 	}
 
