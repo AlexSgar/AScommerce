@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Prodotto Inserito</title>
+<title>Prodotto</title>
 </head>
 <body>
 	<f:view>
@@ -17,8 +17,9 @@
 		<div>Prezzo: ${productController.product.price}</div>
 		<div>Descrizione: ${productController.product.description}</div>
 		<div>Quantita' disponibile: ${productController.product.quantityAvaiable}</div>
+		
+		<br/>
 		<h:form>
-			<br/>
 			<h:commandLink  value="Torna al catalogo prodotti" action="#{productController.showProducts}" >
 			</h:commandLink> 
 			

@@ -26,8 +26,8 @@
 			</c:forEach>
 			</table>
 		</h:form>
-		<h:form>
 		<br/>
+		<h:form>
 		<h:commandLink  value="Torna alla home" action="/home.jsp" >
 			</h:commandLink>
 		</h:form>
