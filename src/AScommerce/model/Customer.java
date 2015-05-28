@@ -27,6 +27,9 @@ public class Customer {
 	@Column(nullable = false)
 	private String surname;
 	
+	@Column(nullable=false)
+	private String password;
+	
 //	@Temporal(TemporalType.DATE)
 //	private Date dateOfBirth;
 //	
@@ -44,15 +47,21 @@ public class Customer {
 	private Collection<Order> orders;
 
 
-	public Customer(String name, String surname, Address address, String email) {
+	public Customer(String name, String surname,String password,String email,Address address) {
 		this.name = name;
 		this.surname = surname;
+		this.password = password;
 //		this.dateOfBirth = dateOfBirth;
 //		this.dateOfRegistration = new Date();
 		this.address = address;
 		this.email = email;
 	}
-
+	
+	public void checkPassword(String password) throws InvalidPasswordException{
+		if (!this.password.equals(password))
+			throw new InvalidPasswordException();
+	}
+	
 	public String getName() {
 		return name;
 	}

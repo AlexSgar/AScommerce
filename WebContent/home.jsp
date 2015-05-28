@@ -10,8 +10,8 @@
 <body>
 	<h1> Benvenuti in AScommerce </h1>
 	<f:view>
-		<div><h2>${customerController.customer.name}</h2>
-		${customerController.customer.surname}
+		<div><h2>${aScommerceController.customer.name}</h2>
+		${aScommerceController.customer.surname}
 		</div>
 		<h:form>
 			<h:commandLink value = "Lista Prodotti" action="#{productController.showProducts}"></h:commandLink>

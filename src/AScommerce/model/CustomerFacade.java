@@ -16,8 +16,8 @@ public class CustomerFacade {
 	private EntityManager em;
 	
 	
-	public Customer signUp(String name, String surname, Address address, String email){
-		Customer c = new Customer(name, surname, address, email);
+	public Customer signUp(String name, String surname, String password,String email,Address address){
+		Customer c = new Customer(name, surname,password,email, address);
 		em.persist(c);
 		return c;
 	}

@@ -14,15 +14,17 @@ import javax.persistence.Column;
 import AScommerce.model.Address;
 import AScommerce.model.Customer;
 import AScommerce.model.CustomerFacade;
+import AScommerce.model.InvalidPasswordException;
 import AScommerce.model.Order;
 
 @ManagedBean
-public class CustomerController {
+public class AScommerceController {
 	
 	private Long id;
 	private Customer customer;
 	private String name;
 	private String surname;
+	private String password;
 	private String dateOfBirth;
 	private String street;
 	private String city;
@@ -43,8 +45,23 @@ public class CustomerController {
 //		}
 		this.customer = this.customerFacade.findCustomer(email);
 		if (this.customer==null)
-			this.customer = this.customerFacade.signUp(name, surname, new Address(street, city, state, zipcode, country), email);
+			this.customer = this.customerFacade.signUp(name, surname,password,email, new Address(street, city, state, zipcode, country));
 		return "home";
+	}
+	
+	public String logIn(){
+		String nextPage = "home";
+		this.customer = this.customerFacade.findCustomer(email);
+		if(this.customer !=null)
+			try{
+				this.customer.checkPassword(password);
+			}
+			catch(InvalidPasswordException e){
+				 nextPage = "error";
+			}
+		else 
+			nextPage = "error";
+		return nextPage;
 	}
 	
 	
@@ -155,7 +172,14 @@ public class CustomerController {
 	public void setCountry(String country) {
 		this.country = country;
 	}
+	public String getPassword() {
+		return password;
+	}
 
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 	public CustomerFacade getCustomerFacade() {
 		return customerFacade;
