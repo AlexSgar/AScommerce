@@ -25,16 +25,42 @@
                      requiredMessage="La data di nascita e' obbligatoria"
                      id="date"/> <h:message for="date" />
 			</div>
-    		<div>Email: <h:inputTextarea value="#{customerController.email}" 
+			<div>Email: <h:inputText value="#{customerController.email}" 
     				required="true"
     				requiredMessage="L'email e' obbligatoria"
                     id="email"/> <h:message for="email" />            
 			</div>
+			<p>Indirizzo</p>
+			<div>Via: <h:inputText value="#{customerController.street}" 
+    				required="true"
+    				requiredMessage="L'indirizzo e' obbligatorio"
+                    id="street"/> <h:message for="street" />            
+			
+			 Cap: <h:inputText value="#{customerController.zipcode}" 
+    				required="true"
+    				requiredMessage="Il cap e' obbligatori"
+                    id="zipcode"/> <h:message for="zipcode" />  
+             </div>                 
+			<div>Citta': <h:inputText value="#{customerController.city}" 
+    				required="true"
+    				requiredMessage="La citta' e' obbligatoria"
+                    id="city"/> <h:message for="city" />            
+			
+				Provincia: <h:inputText value="#{customerController.state}" 
+    				required="true"
+    				requiredMessage="La provincia e' obbligatoria"
+                    id="state"/> <h:message for="state" />            
+			
+				Nazione: <h:inputText value="#{customerController.country}" 
+    				required="true"
+    				requiredMessage="La nazione e' obbligatoria"
+                    id="country"/> <h:message for="country" />            
+			</div>
+    		
 			<div>
 				<h:commandButton value="Submit"  action="#{customerController.signUp}"/>
 			</div>
-			
 		</h:form>
-	</f:view>
+	</f:view> 
 </body>
 </html>

@@ -6,7 +6,7 @@
 	<persistence-unit name="unit-jee-AScommerce" transaction-type="JTA">
 		<provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
 		<jta-data-source>PostgreSQL Database</jta-data-source>
-		<class>AScommerce.model.prodotto</class>
+		<class>AScommerce.model.Product</class>
 		<properties>
 			<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(SchemaAction=add,ForeignKeys=true)" />
 			<property name="openjpa.jdbc.DBDictionary" value="postgres" /> 

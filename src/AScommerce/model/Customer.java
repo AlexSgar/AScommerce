@@ -1,6 +1,5 @@
 package AScommerce.model;
 
-import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 
@@ -28,11 +27,11 @@ public class Customer {
 	@Column(nullable = false)
 	private String surname;
 	
-	@Temporal(TemporalType.DATE)
-	private Date dateOfBirth;
-	
-	@Temporal(TemporalType.DATE)
-	private Date dateOfRegistration;
+//	@Temporal(TemporalType.DATE)
+//	private Date dateOfBirth;
+//	
+//	@Temporal(TemporalType.DATE)
+//	private Date dateOfRegistration;
 	
 	@Column(nullable = false)
 	@OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
@@ -45,11 +44,11 @@ public class Customer {
 	private Collection<Order> orders;
 
 
-	public Customer(String name, String surname, Date dateOfBirth, Address address, String email) {
+	public Customer(String name, String surname, Address address, String email) {
 		this.name = name;
 		this.surname = surname;
-		this.dateOfBirth = dateOfBirth;
-		this.dateOfRegistration = Calendar.getInstance().getTime();
+//		this.dateOfBirth = dateOfBirth;
+//		this.dateOfRegistration = new Date();
 		this.address = address;
 		this.email = email;
 	}
@@ -70,21 +69,21 @@ public class Customer {
 		this.surname = surname;
 	}
 
-	public Date getDateOfBirth() {
-		return dateOfBirth;
-	}
-
-	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
-
-	public Date getDateOfRegistration() {
-		return dateOfRegistration;
-	}
-
-	public void setDateOfRegistration(Date dateOfRegistration) {
-		this.dateOfRegistration = dateOfRegistration;
-	}
+//	public Date getDateOfBirth() {
+//		return dateOfBirth;
+//	}
+//
+//	public void setDateOfBirth(Date dateOfBirth) {
+//		this.dateOfBirth = dateOfBirth;
+//	}
+//
+//	public Date getDateOfRegistration() {
+//		return dateOfRegistration;
+//	}
+//
+//	public void setDateOfRegistration(Date dateOfRegistration) {
+//		this.dateOfRegistration = dateOfRegistration;
+//	}
 
 	public Address getAddress() {
 		return address;

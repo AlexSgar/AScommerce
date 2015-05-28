@@ -20,7 +20,7 @@
 		
 		<br/>
 		<h:form>
-			<h:commandLink  value="Torna al catalogo prodotti" action="#{productController.showProducts}" >
+			<h:commandLink  value="Torna al catalogo prodotti" action="/products.jsp" >
 			</h:commandLink> 
 			
 		</h:form>

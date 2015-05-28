@@ -33,17 +33,6 @@ public class ProductFacade {
 	
 	
 	
-//	public Product getProduct(Long id) {
-//	    Product product = em.find(Product.class, id);
-//		return product;
-//	}
-//	
-//	public List<Product> getAllProducts() {
-//        CriteriaQuery<Product> cq = em.getCriteriaBuilder().createQuery(Product.class);
-//        cq.select(cq.from(Product.class));
-//        List<Product> products = em.createQuery(cq).getResultList();
-//		return products;
-//	}
 //
 //	public void updateProduct(Product product) {
 //        em.merge(product);

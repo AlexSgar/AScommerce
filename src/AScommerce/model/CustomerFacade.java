@@ -1,9 +1,11 @@
 package AScommerce.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
@@ -14,8 +16,8 @@ public class CustomerFacade {
 	private EntityManager em;
 	
 	
-	public Customer signUp(String name, String surname, Date dateOfBirth, Address address, String email){
-		Customer c = new Customer(name, surname, dateOfBirth, address, email);
+	public Customer signUp(String name, String surname, Address address, String email){
+		Customer c = new Customer(name, surname, address, email);
 		em.persist(c);
 		return c;
 	}
@@ -27,6 +29,11 @@ public class CustomerFacade {
 	public Customer findCustomer(String email){
 		TypedQuery<Customer> q = em.createQuery("SELECT c FROM Customer c WHERE c.email= :email", Customer.class);
 		q.setParameter("email", email);
-		return q.getSingleResult();
+		try{
+			return q.getSingleResult();
+		}
+		catch(NoResultException e){
+			return null;
+		}
 	}
 }

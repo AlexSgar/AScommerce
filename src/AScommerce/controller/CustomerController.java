@@ -1,6 +1,7 @@
 package AScommerce.controller;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Collection;
@@ -8,6 +9,7 @@ import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.persistence.Column;
 
 import AScommerce.model.Address;
 import AScommerce.model.Customer;
@@ -22,8 +24,11 @@ public class CustomerController {
 	private String name;
 	private String surname;
 	private String dateOfBirth;
-	private String dateOfRegistration;
-	private Address address;
+	private String street;
+	private String city;
+	private String state;
+	private String zipcode;
+	private String country;
 	private String email;
 	private Collection<Order> orders;
 	
@@ -31,12 +36,19 @@ public class CustomerController {
 	private CustomerFacade customerFacade;
 
 	public String signUp(){
-		//DateFormat format = new SimpleDateFormat("GG/MM/AAAA");
-		//format.
-		this.customer = this.customerFacade.signUp(name, surname, Calendar.getInstance().getTime(), new Address("xx", "xx", "xx", "xx", "xx"), email);
+//		try {
+//			Date dateOfBirth = new SimpleDateFormat("gg-mm-aaaa").parse(this.dateOfBirth);
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
+		this.customer = this.customerFacade.findCustomer(email);
+		if (this.customer==null)
+			this.customer = this.customerFacade.signUp(name, surname, new Address(street, city, state, zipcode, country), email);
 		return "home";
 	}
 	
+	
+	//getter e setter
 	
 	public Customer getCustomer() {
 		return customer;
@@ -79,22 +91,6 @@ public class CustomerController {
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	public String getDateOfRegistration() {
-		return dateOfRegistration;
-	}
-
-	public void setDateOfRegistration(String dateOfRegistration) {
-		this.dateOfRegistration = dateOfRegistration;
-	}
-
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -110,7 +106,65 @@ public class CustomerController {
 	public void setOrders(Collection<Order> orders) {
 		this.orders = orders;
 	}
+	
+	public String getStreet() {
+		return street;
+	}
 
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+
+	public String getCity() {
+		return city;
+	}
+
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+
+	public String getState() {
+		return state;
+	}
+
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+
+	public String getZipcode() {
+		return zipcode;
+	}
+
+
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
+
+
+	public String getCountry() {
+		return country;
+	}
+
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+
+	public CustomerFacade getCustomerFacade() {
+		return customerFacade;
+	}
+
+
+	public void setCustomerFacade(CustomerFacade customerFacade) {
+		this.customerFacade = customerFacade;
+	}
 	
 	
 }
