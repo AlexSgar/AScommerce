@@ -1,17 +1,13 @@
 package AScommerce.controller;
 
-import java.text.DateFormat;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
+
 import java.util.Collection;
 import java.util.Date;
 
-import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.persistence.Column;
-
-import AScommerce.facade.CustomerFacade;
 import AScommerce.model.Address;
 import AScommerce.model.Customer;
 import AScommerce.model.InvalidPasswordException;

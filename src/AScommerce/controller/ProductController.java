@@ -16,7 +16,7 @@ import AScommerce.model.Product;
 import AScommerce.model.Provider;
 
 @ManagedBean(name = "productController")
-public class ProductController {
+public class ProductController extends SessionController{
 	
 	@ManagedProperty(value="#{param.id}")
 	private Long id;
@@ -39,14 +39,21 @@ public class ProductController {
 		return "product";
 	}
 	
+	public List<Product> getAllProducts(){
+		return this.productFacade.getAllProducts();
+	}
+	
 	public String showProducts(){
-		this.products = this.productFacade.getAllProducts();
 		return "products";
 	}
 	
 	public String findProduct(){
+		String nextPage = "product";
 		this.product = this.productFacade.findProduct(id);
-		return "product";
+		this.setSessionAttribute("currentProduct", this.product);
+		if(this.getSessionAttribute("currentOrder")!=null)
+			nextPage =  "productToOrder";
+		return nextPage;
 	}
 	
 	

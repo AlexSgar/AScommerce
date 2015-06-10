@@ -2,6 +2,7 @@ package AScommerce.model;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.LinkedList;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -55,6 +56,7 @@ public class Customer {
 		this.dateOfRegistration = new Date();
 		this.address = address;
 		this.email = email;
+		this.orders = new LinkedList<Order>();
 	}
 	
 	public void checkPassword(String password) throws InvalidPasswordException{

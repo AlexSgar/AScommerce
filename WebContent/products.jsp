@@ -13,7 +13,7 @@
 		<h:form>
 			<table>
 			<tr><th>Nome</th><th>Codice</th><th>Prezzo</th><th>Descrizione</th><th>Quantita' Disponibile</th> </tr>
-			<c:forEach var="product" items="#{productController.products}">
+			<c:forEach var="product" items="#{productController.getAllProducts()}">
 			<tr> <td>
 					<h:commandLink action= "#{productController.findProduct}" value="#{product.name}">
 					<f:param name="id" value="#{product.id}" />
@@ -29,6 +29,9 @@
 		</h:form>
 		<br/>
 		<h:form>
+		<h:panelGroup rendered ="#{orderController.isOrdering()}">
+			<h:commandButton value ="Chiudi Ordine" action ="#{orderController.endOrder}"></h:commandButton>
+		</h:panelGroup>
 		<h:commandLink  value="Torna alla home" action="/home.jsp" >
 			</h:commandLink>
 		</h:form>

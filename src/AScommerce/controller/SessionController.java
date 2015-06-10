@@ -12,17 +12,13 @@ public class SessionController {
 
 	@EJB
 	private CustomerFacade customerFacade;
-	
-	
 
 	private Customer currentCustomer;
 	
 	@PostConstruct
 	public void init(){
-		Long idUser = (Long) getSessionAttribute("currentCustomer");
-		if (idUser != null){
-			this.currentCustomer = this.customerFacade.findCustomer(idUser);
-		}
+		this.currentCustomer = (Customer) getSessionAttribute("currentCustomer");
+		
 	}
 	
 	public void setSessionAttribute(String value,Object o){
@@ -42,7 +38,7 @@ public class SessionController {
 	}
 	
 	public void setCurrentCustomer(Customer currentUser) {
-		this.setSessionAttribute("currentCustomer", currentUser.getId());
+		this.setSessionAttribute("currentCustomer", currentUser);
 		this.currentCustomer = currentUser;
 	}
 	
@@ -50,4 +46,7 @@ public class SessionController {
 		return customerFacade;
 	}
 	
+	public boolean isLogged(){
+		return this.currentCustomer!=null;
+	}
 }

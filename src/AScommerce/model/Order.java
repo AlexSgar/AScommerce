@@ -2,7 +2,9 @@ package AScommerce.model;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.LinkedList;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -36,13 +38,14 @@ public class Order {
 	@ManyToOne
 	private Customer customer;
 	
-	@OneToMany(fetch=FetchType.EAGER)
+	@OneToMany(fetch=FetchType.EAGER,cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
 	@JoinColumn(name="order_id")
 	private Collection<OrderLine> orderLines;
 
 	public Order(Customer customer) {
 		this.creationTime = new Date();
 		this.customer = customer;
+		this.orderLines = new LinkedList<OrderLine>();
 	}
 
 	public Date getCreationTime() {
@@ -83,6 +86,10 @@ public class Order {
 
 	public void setOrderLines(Collection<OrderLine> orderLines) {
 		this.orderLines = orderLines;
+	}
+	
+	public void setOrderLine(OrderLine ol){
+		this.orderLines.add(ol);
 	}
 
 	public Long getId() {

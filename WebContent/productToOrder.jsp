@@ -19,6 +19,10 @@
 		<div>Quantita' disponibile: ${productController.product.quantityAvaiable}</div>
 		
 		<br/>
+			<h:form>
+			<div>Quantita' : <h:inputText value="#{orderController.quantity}"></h:inputText>
+			<h:commandButton value ="Acquista" action="#{orderController.addProduct}"></h:commandButton></div>
+			</h:form>
 		
 		<h:form>
 			<h:commandLink  value="Torna al catalogo prodotti" action="#{productController.showProducts}" >

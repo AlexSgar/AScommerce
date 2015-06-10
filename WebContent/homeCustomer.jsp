@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<title>AScommerce</title>
+<title>Home</title>
 </head>
 <body>
 	<h1> Benvenuti in AScommerce </h1>
@@ -14,13 +14,7 @@
 				${aScommerceController.getCurrentCustomer().surname}</h2>
 		
 	</div>
-	<h:panelGroup rendered = "#{sessionController.isLogged()}">
-	<h:form>
-		<h:commandLink value="Crea Ordine" action ="#{orderController.initOrder}"></h:commandLink>
-	</h:form>
-	</h:panelGroup>
-	<h:form>
-			<h:commandLink value = "Lista Prodotti" action="#{productController.showProducts}"></h:commandLink>
+	<h:form><h:commandLink value="Crea Ordine" action ="#{orderController.initOrder}"></h:commandLink>
 	</h:form>
 	</f:view>
 </body>
