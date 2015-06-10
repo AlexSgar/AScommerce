@@ -20,7 +20,7 @@
                      requiredMessage="Il cognome e' obbligatorio"
                      id="surname"/> <h:message for="surname" />
 			</div>
-			<div>Password: <h:inputText value="#{aScommerceController.password}" 
+			<div>Password: <h:inputSecret value="#{aScommerceController.password}" 
                      required="true"
                      requiredMessage="La password e' obbligatoria"
                      id="pass"/> <h:message for="pass" />

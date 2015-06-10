@@ -22,15 +22,15 @@ public class Order {
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private Long id;
 	
-//	@Column(nullable = false)
-//	@Temporal(TemporalType.TIMESTAMP)
-//	private Date creationTime;
-//	
-//	@Temporal(TemporalType.TIMESTAMP)
-//	private Date closedTime;
-//	
-//	@Temporal(TemporalType.TIMESTAMP)
-//	private Date fulfilTime;
+	@Column(nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date creationTime;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date closedTime;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fulfilTime;
 	
 	@Column(nullable = false)
 	@ManyToOne
@@ -41,33 +41,33 @@ public class Order {
 	private Collection<OrderLine> orderLines;
 
 	public Order(Customer customer) {
-//		this.creationTime = new Date();
+		this.creationTime = new Date();
 		this.customer = customer;
 	}
 
-//	public Date getCreationTime() {
-//		return creationTime;
-//	}
-//
-//	public void setCreationTime(Date creationTime) {
-//		this.creationTime = creationTime;
-//	}
-//
-//	public Date getClosedTime() {
-//		return closedTime;
-//	}
-//
-//	public void setClosedTime(Date closedTime) {
-//		this.closedTime = closedTime;
-//	}
-//
-//	public Date getFulfilTime() {
-//		return fulfilTime;
-//	}
-//
-//	public void setFulfilTime(Date fulfilTime) {
-//		this.fulfilTime = fulfilTime;
-//	}
+	public Date getCreationTime() {
+		return creationTime;
+	}
+
+	public void setCreationTime(Date creationTime) {
+		this.creationTime = creationTime;
+	}
+
+	public Date getClosedTime() {
+		return closedTime;
+	}
+
+	public void setClosedTime(Date closedTime) {
+		this.closedTime = closedTime;
+	}
+
+	public Date getFulfilTime() {
+		return fulfilTime;
+	}
+
+	public void setFulfilTime(Date fulfilTime) {
+		this.fulfilTime = fulfilTime;
+	}
 
 	public Customer getCustomer() {
 		return customer;

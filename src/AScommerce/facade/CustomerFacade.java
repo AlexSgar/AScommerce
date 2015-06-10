@@ -29,6 +29,11 @@ public class CustomerFacade {
 		return em.find(Customer.class, id);
 	}
 	
+	public boolean existsCustomer(String email){
+	    Customer c = this.findCustomer(email);
+	    return c!=null;
+	}
+	
 	public Customer findCustomer(String email){
 		TypedQuery<Customer> q = em.createQuery("SELECT c FROM Customer c WHERE c.email= :email", Customer.class);
 		q.setParameter("email", email);

@@ -18,10 +18,9 @@ import AScommerce.model.InvalidPasswordException;
 import AScommerce.model.Order;
 
 @ManagedBean
-public class AScommerceController {
+public class AScommerceController extends SessionController{
 	
 	private Long id;
-	private Customer customer;
 	private String name;
 	private String surname;
 	private String password;
@@ -33,28 +32,29 @@ public class AScommerceController {
 	private String country;
 	private String email;
 	private Collection<Order> orders;
-	
-	@EJB
-	private CustomerFacade customerFacade;
 
 	public String signUp(){
-//		try {
-//			Date dateOfBirth = new SimpleDateFormat("gg-mm-aaaa").parse(this.dateOfBirth);
-//		} catch (ParseException e) {
-//			e.printStackTrace();
-//		}
-		this.customer = this.customerFacade.findCustomer(email);
-		if (this.customer==null)
-			this.customer = this.customerFacade.signUp(name, surname,password,email,new Date(), new Address(street, city, state, zipcode, country));
+		Date cdateOfBirth;
+		try {
+			cdateOfBirth = new SimpleDateFormat("dd/MM/yyyy").parse(this.dateOfBirth);
+			if(this.getCustomerFacade().existsCustomer(email))
+				return "error";
+			else
+				this.setCurrentCustomer(this.getCustomerFacade().signUp(name, surname,password,email,cdateOfBirth, new Address(street, city, state, zipcode, country)));
+			
+		} catch (ParseException e) {
+			return "newCustomer";
+		}
 		return "home";
 	}
 	
 	public String logIn(){
 		String nextPage = "home";
-		this.customer = this.customerFacade.findCustomer(email);
-		if(this.customer !=null)
+		Customer c = this.getCustomerFacade().findCustomer(email);
+		if(c !=null)
 			try{
-				this.customer.checkPassword(password);
+				c.checkPassword(password);
+				this.setCurrentCustomer(c);
 			}
 			catch(InvalidPasswordException e){
 				 nextPage = "error";
@@ -66,16 +66,7 @@ public class AScommerceController {
 	
 	
 	//getter e setter
-	
-	public Customer getCustomer() {
-		return customer;
-	}
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-	
-	
 	public Long getId() {
 		return id;
 	}
@@ -181,14 +172,7 @@ public class AScommerceController {
 		this.password = password;
 	}
 
-	public CustomerFacade getCustomerFacade() {
-		return customerFacade;
-	}
-
-
-	public void setCustomerFacade(CustomerFacade customerFacade) {
-		this.customerFacade = customerFacade;
-	}
+	
 	
 	
 }
