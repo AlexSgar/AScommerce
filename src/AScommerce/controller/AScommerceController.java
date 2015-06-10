@@ -11,9 +11,9 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.persistence.Column;
 
+import AScommerce.facade.CustomerFacade;
 import AScommerce.model.Address;
 import AScommerce.model.Customer;
-import AScommerce.model.CustomerFacade;
 import AScommerce.model.InvalidPasswordException;
 import AScommerce.model.Order;
 
@@ -45,7 +45,7 @@ public class AScommerceController {
 //		}
 		this.customer = this.customerFacade.findCustomer(email);
 		if (this.customer==null)
-			this.customer = this.customerFacade.signUp(name, surname,password,email, new Address(street, city, state, zipcode, country));
+			this.customer = this.customerFacade.signUp(name, surname,password,email,new Date(), new Address(street, city, state, zipcode, country));
 		return "home";
 	}
 	

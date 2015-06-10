@@ -1,4 +1,4 @@
-package AScommerce.model;
+package AScommerce.facade;
 
 import java.util.List;
 
@@ -6,6 +6,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+
+import AScommerce.model.Product;
 
 @Stateless(name="productFacade")
 public class ProductFacade {

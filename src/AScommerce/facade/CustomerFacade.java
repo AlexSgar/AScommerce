@@ -1,4 +1,4 @@
-package AScommerce.model;
+package AScommerce.facade;
 
 import java.util.Date;
 import java.util.List;
@@ -9,6 +9,9 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import AScommerce.model.Address;
+import AScommerce.model.Customer;
+
 @Stateless
 public class CustomerFacade {
 	
@@ -16,8 +19,8 @@ public class CustomerFacade {
 	private EntityManager em;
 	
 	
-	public Customer signUp(String name, String surname, String password,String email,Address address){
-		Customer c = new Customer(name, surname,password,email, address);
+	public Customer signUp(String name, String surname, String password,String email,Date dateOfBirth,Address address){
+		Customer c = new Customer(name, surname,password,email, dateOfBirth, address);
 		em.persist(c);
 		return c;
 	}

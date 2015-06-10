@@ -7,6 +7,10 @@
 		<provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
 		<jta-data-source>PostgreSQL Database</jta-data-source>
 		<class>AScommerce.model.Product</class>
+		<class>AScommerce.model.Customer</class>
+		<class>AScommerce.model.Address</class>
+		<class>AScommerce.model.Order</class>
+		<class>AScommerce.model.OrderLine</class>
 		<properties>
 			<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(SchemaAction=add,ForeignKeys=true)" />
 			<property name="openjpa.jdbc.DBDictionary" value="postgres" /> 

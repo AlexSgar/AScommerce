@@ -11,8 +11,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ManyToMany;
 
+import AScommerce.facade.ProductFacade;
 import AScommerce.model.Product;
-import AScommerce.model.ProductFacade;
 import AScommerce.model.Provider;
 
 @ManagedBean(name = "productController")
