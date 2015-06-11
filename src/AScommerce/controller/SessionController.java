@@ -10,8 +10,6 @@ import AScommerce.model.Customer;
 
 public class SessionController {
 
-	@EJB
-	private CustomerFacade customerFacade;
 
 	private Customer currentCustomer;
 	
@@ -42,9 +40,6 @@ public class SessionController {
 		this.currentCustomer = currentUser;
 	}
 	
-	public CustomerFacade getCustomerFacade() {
-		return customerFacade;
-	}
 	
 	public boolean isLogged(){
 		return this.currentCustomer!=null;

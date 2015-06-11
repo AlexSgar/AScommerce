@@ -9,30 +9,38 @@
 </head>
 <body>
 	<f:view>
-		<h1>Ecco i prodotti nel catalogo </h1>
+		<h1>Ecco i prodotti nel catalogo</h1>
 		<h:form>
 			<table>
-			<tr><th>Nome</th><th>Codice</th><th>Prezzo</th><th>Descrizione</th><th>Quantita' Disponibile</th> </tr>
-			<c:forEach var="product" items="#{productController.getAllProducts()}">
-			<tr> <td>
-					<h:commandLink action= "#{productController.findProduct}" value="#{product.name}">
-					<f:param name="id" value="#{product.id}" />
-					</h:commandLink>
-				</td>
-				<td>${product.code}</td>
-				<td>${product.price}</td>
-				<td>${product.description}</td>
-				<td>${product.quantityAvaiable}</td>
-			</tr>
-			</c:forEach>
+				<tr>
+					<th>Nome</th>
+					<th>Codice</th>
+					<th>Prezzo</th>
+					<th>Descrizione</th>
+					<th>Quantita' Disponibile</th>
+				</tr>
+				<c:forEach var="product"
+					items="#{productController.getAllProducts()}">
+					<tr>
+						<td><h:commandLink action="#{productController.findProduct}"
+								value="#{product.name}">
+								<f:param name="id" value="#{product.id}" />
+							</h:commandLink></td>
+						<td>${product.code}</td>
+						<td>${product.price}</td>
+						<td>${product.description}</td>
+						<td>${product.quantityAvaiable}</td>
+					</tr>
+				</c:forEach>
 			</table>
 		</h:form>
-		<br/>
+		<br />
 		<h:form>
-		<h:panelGroup rendered ="#{orderController.isOrderingAndCanClose()}">
-			<h:commandButton value ="Chiudi Ordine" action ="#{orderController.endOrder}"></h:commandButton>
-		</h:panelGroup>
-		<h:commandLink  value="Torna alla home" action="/home.jsp" >
+			<h:panelGroup rendered="#{orderController.isOrderingAndCanClose()}">
+				<h:commandButton value="Chiudi Ordine"
+					action="#{orderController.endOrder}"></h:commandButton>
+			</h:panelGroup>
+			<h:commandLink value="Torna alla home" action="/home.jsp">
 			</h:commandLink>
 		</h:form>
 	</f:view>

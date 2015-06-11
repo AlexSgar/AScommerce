@@ -31,22 +31,20 @@ public class ProductFacade {
 	public Product findProduct(Long id) {
 		return em.find(Product.class, id);
 	}
+	
+	public void remove(Product product){
+		em.remove(product);
+	}
+	
+	public void updateProduct(Product product){
+			em.merge(product);
+	}
+
+	public void updateProductQuantity(Product p, int quantity) {
+		p.setQuantityAvaiable(p.getQuantityAvaiable()-quantity);
+		
+	}
 
 	
-	
-	
-//
-//	public void updateProduct(Product product) {
-//        em.merge(product);
-//	}
-//	
-//    private void deleteProduct(Product product) {
-//        em.remove(product);
-//    }
-//
-//	public void deleteProduct(Long id) {
-//        Product product = em.find(Product.class, id);
-//        deleteProduct(product);
-//	}
 	
 }

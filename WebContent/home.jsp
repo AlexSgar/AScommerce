@@ -16,7 +16,8 @@
 	</div>
 	<h:panelGroup rendered = "#{aScommerceController.isLogged()}">
 	<h:form>
-		<h:commandLink value="Crea Ordine" action ="#{orderController.initOrder}"></h:commandLink>
+		<div><h:commandLink value="Crea Ordine" action ="#{orderController.initOrder}"></h:commandLink></div>
+		<div><h:commandLink value="Visualizza Ordini" action="#{orderController.showOrders}"></h:commandLink></div>
 	</h:form>
 	</h:panelGroup>
 	<h:form>

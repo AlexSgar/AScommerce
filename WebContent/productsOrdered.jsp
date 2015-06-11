@@ -11,7 +11,7 @@
 <body>
 	<f:view>
 		<h1>Ecco i prodotti acquistati </h1>
-		<h:form>
+		
 			<table>
 			<tr><th>Nome</th><th>Prezzo</th><th>Quantita'</th> </tr>
 			<c:forEach var="orderLine" items="#{orderController.getOrderLines()}">
@@ -22,11 +22,11 @@
 			</tr>
 			</c:forEach>
 			</table>
-		</h:form>
 		<br/>
+		
 		<h:form>
-		<h:commandLink  value="Torna alla home" action="/home.jsp" >
-			</h:commandLink>
+			<div><h:commandLink value="Visualizza i tuoi Ordini" action="#{orderController.showOrders}" > </h:commandLink></div>
+			<div><h:commandLink  value="Torna alla Home" action="/home.jsp" ></h:commandLink></div>
 		</h:form>
 	</f:view>
 </body>

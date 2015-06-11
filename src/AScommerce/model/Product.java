@@ -13,7 +13,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 
 @Entity
-@NamedQuery(name = "findAllProducts", query = "SELECT p FROM Product p")
+@NamedQuery(name = "findAllProducts", query = "SELECT p FROM Product p WHERE p.quantityAvaiable>0")
 public class Product {
 	
 	@Id

@@ -3,11 +3,13 @@ package AScommerce.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
 import java.util.Collection;
 import java.util.Date;
 
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+
+import AScommerce.facade.CustomerFacade;
 import AScommerce.model.Address;
 import AScommerce.model.Customer;
 import AScommerce.model.InvalidPasswordException;
@@ -16,7 +18,6 @@ import AScommerce.model.Order;
 @ManagedBean
 public class AScommerceController extends SessionController{
 	
-	private Long id;
 	private String name;
 	private String surname;
 	private String password;
@@ -28,25 +29,28 @@ public class AScommerceController extends SessionController{
 	private String country;
 	private String email;
 	private Collection<Order> orders;
-
+	
+	@EJB
+	private CustomerFacade customerFacade;
+	
 	public String signUp(){
 		Date cdateOfBirth;
 		try {
 			cdateOfBirth = new SimpleDateFormat("dd/MM/yyyy").parse(this.dateOfBirth);
-			if(this.getCustomerFacade().existsCustomer(email))
+			if(this.customerFacade.existsCustomer(email))
 				return "error";
 			else
-				this.setCurrentCustomer(this.getCustomerFacade().signUp(name, surname,password,email,cdateOfBirth, new Address(street, city, state, zipcode, country)));
+				this.setCurrentCustomer(this.customerFacade.signUp(name, surname,password,email,cdateOfBirth, new Address(street, city, state, zipcode, country)));
 			
 		} catch (ParseException e) {
-			return "newCustomer";
+			return "signUp";
 		}
 		return "home";
 	}
 	
 	public String logIn(){
 		String nextPage = "home";
-		Customer c = this.getCustomerFacade().findCustomer(email);
+		Customer c = this.customerFacade.findCustomer(email);
 		if(c !=null)
 			try{
 				c.checkPassword(password);
@@ -63,13 +67,6 @@ public class AScommerceController extends SessionController{
 	
 	//getter e setter
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getName() {
 		return name;

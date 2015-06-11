@@ -19,12 +19,14 @@ import AScommerce.model.Product;
 public class OrderController extends SessionController {
 	
 	@ManagedProperty(value="#{param.id}")
-	private Long idProduct;
+	private Long idOrder;
 	private Long quantity;
 	private Order currentOrder;
 	
 	@EJB
 	private OrderFacade orderFacade;
+	@EJB
+	private ProductFacade productFacade;
 	
 	@PostConstruct
 	public void initOrderController(){
@@ -41,6 +43,8 @@ public class OrderController extends SessionController {
 	
 	public String addProduct(){
 		Product p = (Product) this.getSessionAttribute("currentProduct");
+		this.productFacade.updateProductQuantity(p,this.quantity.intValue());
+		this.productFacade.updateProduct(p);
 		OrderLine ol = new OrderLine(this.quantity.intValue(),p);
 		this.currentOrder.addOrderLine(ol);
 		return "products";
@@ -48,27 +52,42 @@ public class OrderController extends SessionController {
 	}
 	public String endOrder(){
 		this.orderFacade.createOrder(currentOrder);
+		this.setSessionAttribute("currentOrder", null);
+		return "productsOrdered";
+	}
+	
+	public String showOrders(){
+		return "orders";
+	}
+	
+	public String findOrder(){
+		this.currentOrder = this.orderFacade.findOrder(idOrder);
 		return "productsOrdered";
 	}
 	
 	public List<OrderLine> getOrderLines(){
-		return (List<OrderLine>) this.currentOrder.getOrderLines();
+		return this.currentOrder.getOrderLines();
+	}
+	
+	public List<Order> getAllOrders(){
+		return this.orderFacade.getAllOrders(this.getCurrentCustomer().getId());
 	}
 	
 	public boolean isOrderingAProduct(){
 		return this.currentOrder!=null;
 	}
 	
+	
 	public boolean isOrderingAndCanClose(){
 		return this.currentOrder!=null && this.currentOrder.getOrderLines().size()>0;
 	}
 	
-	public Long getIdProduct() {
-		return idProduct;
+	public Long getIdOrder() {
+		return idOrder;
 	}
 
-	public void setIdProduct(Long idProduct) {
-		this.idProduct = idProduct;
+	public void setIdOrder(Long idOrder) {
+		this.idOrder = idOrder;
 	}
 
 	public Long getQuantity() {
