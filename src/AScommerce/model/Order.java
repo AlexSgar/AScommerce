@@ -88,7 +88,7 @@ public class Order {
 		this.orderLines = orderLines;
 	}
 	
-	public void setOrderLine(OrderLine ol){
+	public void addOrderLine(OrderLine ol){
 		this.orderLines.add(ol);
 	}
 

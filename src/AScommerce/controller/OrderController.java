@@ -20,7 +20,7 @@ public class OrderController extends SessionController {
 	
 	@ManagedProperty(value="#{param.id}")
 	private Long idProduct;
-	private Integer quantity;
+	private Long quantity;
 	private Order currentOrder;
 	
 	@EJB
@@ -41,13 +41,13 @@ public class OrderController extends SessionController {
 	
 	public String addProduct(){
 		Product p = (Product) this.getSessionAttribute("currentProduct");
-		OrderLine ol = new OrderLine(this.quantity,p);
-		this.currentOrder.setOrderLine(ol);
+		OrderLine ol = new OrderLine(this.quantity.intValue(),p);
+		this.currentOrder.addOrderLine(ol);
 		return "products";
 		
 	}
 	public String endOrder(){
-		this.orderFacade.createOrder(getCurrentCustomer(), currentOrder);
+		this.orderFacade.createOrder(currentOrder);
 		return "productsOrdered";
 	}
 	
@@ -55,10 +55,12 @@ public class OrderController extends SessionController {
 		return (List<OrderLine>) this.currentOrder.getOrderLines();
 	}
 	
+	public boolean isOrderingAProduct(){
+		return this.currentOrder!=null;
+	}
 	
-	public boolean isOrdering(){
-		Order o = (Order)this.getSessionAttribute("currentOrder");
-		return o!=null && (o.getOrderLines().size()>0);
+	public boolean isOrderingAndCanClose(){
+		return this.currentOrder!=null && this.currentOrder.getOrderLines().size()>0;
 	}
 	
 	public Long getIdProduct() {
@@ -69,11 +71,11 @@ public class OrderController extends SessionController {
 		this.idProduct = idProduct;
 	}
 
-	public Integer getQuantity() {
+	public Long getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(Integer quantity) {
+	public void setQuantity(Long quantity) {
 		this.quantity = quantity;
 	}
 

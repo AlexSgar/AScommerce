@@ -5,17 +5,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<title>Home</title>
+<title>Inserimento Prodotto</title>
 </head>
 <body>
-	<h1> Benvenuti in AScommerce </h1>
 	<f:view>
-	<div><h2>${aScommerceController.getCurrentCustomer().name}
-				${aScommerceController.getCurrentCustomer().surname}</h2>
-		
-	</div>
-	<h:form><h:commandLink value="Crea Ordine" action ="#{orderController.initOrder}"></h:commandLink>
-	</h:form>
 	</f:view>
 </body>
 </html>

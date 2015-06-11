@@ -11,10 +11,10 @@
 	<h1> Benvenuti in AScommerce </h1>
 	<f:view>
 	<div><h2>${aScommerceController.getCurrentCustomer().name}
-				${aScommerceController.getCurrentCustomer().surname}</h2>
+			 ${aScommerceController.getCurrentCustomer().surname}</h2>
 		
 	</div>
-	<h:panelGroup rendered = "#{sessionController.isLogged()}">
+	<h:panelGroup rendered = "#{aScommerceController.isLogged()}">
 	<h:form>
 		<h:commandLink value="Crea Ordine" action ="#{orderController.initOrder}"></h:commandLink>
 	</h:form>

@@ -19,10 +19,24 @@
 		<div>Quantita' disponibile: ${productController.product.quantityAvaiable}</div>
 		
 		<br/>
+		<h:panelGroup rendered="#{orderController.isOrderingAProduct()}">
+		<h:form>
+			<div>Quantita' : <h:inputText value="#{orderController.quantity}"
+								required= "true"
+								requiredMessage="campo obbligatorio"
+								validatorMessage="quantita' non disponibile"
+								id="qty">
+							 <f:validateLongRange minimum ="0" maximum="#{productController.product.quantityAvaiable}"/>
+							</h:inputText><h:message for="qty"/>
+			<h:commandButton value ="Aggiungi all'acquisto" action="#{orderController.addProduct}"></h:commandButton></div>
+			</h:form>
+		</h:panelGroup>
 		
 		<h:form>
+			<div>
 			<h:commandLink  value="Torna al catalogo prodotti" action="#{productController.showProducts}" >
 			</h:commandLink> 
+			</div>
 			
 		</h:form>
 	</f:view>

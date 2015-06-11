@@ -29,7 +29,7 @@
 		</h:form>
 		<br/>
 		<h:form>
-		<h:panelGroup rendered ="#{orderController.isOrdering()}">
+		<h:panelGroup rendered ="#{orderController.isOrderingAndCanClose()}">
 			<h:commandButton value ="Chiudi Ordine" action ="#{orderController.endOrder}"></h:commandButton>
 		</h:panelGroup>
 		<h:commandLink  value="Torna alla home" action="/home.jsp" >

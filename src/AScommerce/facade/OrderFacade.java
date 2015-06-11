@@ -14,7 +14,7 @@ public class OrderFacade {
 	@PersistenceContext(unitName = "unit-jee-AScommerce")
 	private EntityManager em;
 	
-	public Order createOrder(Customer c,Order order){
+	public Order createOrder(Order order){
 		em.persist(order);
 		return order;
 	}

@@ -3,6 +3,7 @@ package AScommerce.controller;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -31,7 +32,10 @@ public class ProductController extends SessionController{
 	@EJB(beanName="productFacade")
 	private ProductFacade productFacade;
 
-
+	@PostConstruct
+	public void initProductController(){
+		this.product = (Product) this.getSessionAttribute("currentProduct");
+	}
 	
 	
 	public String createProduct(){
@@ -48,12 +52,9 @@ public class ProductController extends SessionController{
 	}
 	
 	public String findProduct(){
-		String nextPage = "product";
 		this.product = this.productFacade.findProduct(id);
 		this.setSessionAttribute("currentProduct", this.product);
-		if(this.getSessionAttribute("currentOrder")!=null)
-			nextPage =  "productToOrder";
-		return nextPage;
+		return "product";
 	}
 	
 	
