@@ -9,15 +9,17 @@ import java.util.Date;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 
+import AScommerce.facade.AdminFacade;
 import AScommerce.facade.CustomerFacade;
 import AScommerce.model.Address;
+import AScommerce.model.Admin;
 import AScommerce.model.Customer;
 import AScommerce.model.InvalidPasswordException;
 import AScommerce.model.Order;
 
 @ManagedBean
 public class AScommerceController extends SessionController{
-	
+
 	private String name;
 	private String surname;
 	private String password;
@@ -29,10 +31,12 @@ public class AScommerceController extends SessionController{
 	private String country;
 	private String email;
 	private Collection<Order> orders;
-	
+
 	@EJB
 	private CustomerFacade customerFacade;
-	
+	@EJB
+	private AdminFacade adminFacade;
+
 	public String signUp(){
 		Date cdateOfBirth;
 		try {
@@ -41,30 +45,41 @@ public class AScommerceController extends SessionController{
 				return "error";
 			else
 				this.setCurrentCustomer(this.customerFacade.signUp(name, surname,password,email,cdateOfBirth, new Address(street, city, state, zipcode, country)));
-			
+
 		} catch (ParseException e) {
 			return "signUp";
 		}
 		return "home";
 	}
-	
+
 	public String logIn(){
 		String nextPage = "home";
 		Customer c = this.customerFacade.findCustomer(email);
-		if(c !=null)
+		if(c!=null){
 			try{
 				c.checkPassword(password);
 				this.setCurrentCustomer(c);
 			}
 			catch(InvalidPasswordException e){
-				 nextPage = "error";
+				nextPage = "error";
 			}
-		else 
-			nextPage = "error";
+		} else {
+			Admin a = this.adminFacade.findAdmin(email);
+			if(a!=null){
+				try{
+					a.checkPassword(password);
+					this.setCurrentAdmin(a);
+				}
+				catch(InvalidPasswordException e){
+					nextPage="error";
+				}
+			}
+			else nextPage="error";
+		}
 		return nextPage;
 	}
-	
-	
+
+
 	//getter e setter
 
 
@@ -107,7 +122,7 @@ public class AScommerceController extends SessionController{
 	public void setOrders(Collection<Order> orders) {
 		this.orders = orders;
 	}
-	
+
 	public String getStreet() {
 		return street;
 	}
@@ -165,7 +180,7 @@ public class AScommerceController extends SessionController{
 		this.password = password;
 	}
 
-	
-	
-	
+
+
+
 }

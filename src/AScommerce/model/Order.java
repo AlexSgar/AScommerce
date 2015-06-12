@@ -1,6 +1,5 @@
 package AScommerce.model;
 
-import java.util.Collection;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -14,7 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -40,7 +38,7 @@ public class Order {
 	@ManyToOne
 	private Customer customer;
 	
-	@OneToMany(fetch=FetchType.EAGER,cascade =CascadeType.PERSIST)
+	@OneToMany(fetch=FetchType.EAGER,cascade ={CascadeType.PERSIST,CascadeType.REMOVE})
 	@JoinColumn(name="order_id")
 	private List<OrderLine> orderLines;
 

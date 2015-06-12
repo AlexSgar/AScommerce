@@ -1,21 +1,21 @@
 package AScommerce.controller;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
-
-import AScommerce.facade.CustomerFacade;
+import AScommerce.model.Admin;
 import AScommerce.model.Customer;
 
 public class SessionController {
 
 
 	private Customer currentCustomer;
+	private Admin currentAdmin;
 	
 	@PostConstruct
 	public void init(){
 		this.currentCustomer = (Customer) getSessionAttribute("currentCustomer");
+		this.currentAdmin = (Admin) getSessionAttribute("currentAdmin");
 		
 	}
 	
@@ -40,8 +40,15 @@ public class SessionController {
 		this.currentCustomer = currentUser;
 	}
 	
+	public void setCurrentAdmin(Admin a){
+		this.setSessionAttribute("currentAdmin", a);
+		this.currentAdmin = a;
+	}
 	
-	public boolean isLogged(){
+	public boolean isCustomerLogged(){
 		return this.currentCustomer!=null;
+	}
+	public boolean isAdminLogged(){
+		return this.currentAdmin!=null;
 	}
 }

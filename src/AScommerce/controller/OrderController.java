@@ -1,5 +1,6 @@
 package AScommerce.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -43,8 +44,6 @@ public class OrderController extends SessionController {
 	
 	public String addProduct(){
 		Product p = (Product) this.getSessionAttribute("currentProduct");
-		this.productFacade.updateProductQuantity(p,this.quantity.intValue());
-		this.productFacade.updateProduct(p);
 		OrderLine ol = new OrderLine(this.quantity.intValue(),p);
 		this.currentOrder.addOrderLine(ol);
 		return "products";
@@ -52,16 +51,25 @@ public class OrderController extends SessionController {
 	}
 	public String endOrder(){
 		this.orderFacade.createOrder(currentOrder);
-		this.setSessionAttribute("currentOrder", null);
+		this.currentOrder.setClosedTime(new Date());
 		return "productsOrdered";
 	}
+	
+//	public String evadeOrder(){
+//		this.orderFacade.evadeOrder(this.currentOrder);
+//		return "productsOrdered";
+//	}
 	
 	public String showOrders(){
 		return "orders";
 	}
+	public String showOrdersToEvade(){
+		return "ordersToEvade";
+	}
 	
 	public String findOrder(){
 		this.currentOrder = this.orderFacade.findOrder(idOrder);
+		this.setSessionAttribute("currentOrder",this.currentOrder);
 		return "productsOrdered";
 	}
 	
@@ -71,6 +79,10 @@ public class OrderController extends SessionController {
 	
 	public List<Order> getAllOrders(){
 		return this.orderFacade.getAllOrders(this.getCurrentCustomer().getId());
+	}
+	
+	public List<Order> getAllOrdersClosed(){
+		return this.orderFacade.getAllOrdersClosed();
 	}
 	
 	public boolean isOrderingAProduct(){

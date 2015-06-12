@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Prodotto</title>
+</h:head>
+<h:body>
+	<h1>Prodotto Inserito</h1>
+	<h2>${productController.product.name}</h2>
+	<h3>Dettagli</h3>
+	<div>Codice: ${productController.product.code}</div>
+	<div>Prezzo: ${productController.product.price}</div>
+	<div>Descrizione: ${productController.product.description}</div>
+	<div>Quantita' disponibile:
+		${productController.product.quantityAvaiable}</div>
+
+	<br />
+	<h:panelGroup rendered="#{orderController.isOrderingAProduct()}">
+		<h:form>
+			<div>
+				Quantita' :
+				<h:inputText value="#{orderController.quantity}" required="true"
+					requiredMessage="campo obbligatorio">
+				</h:inputText>
+				<h:message for="qty" />
+				<div>
+					<h:commandButton value="Aggiungi all'acquisto"
+						action="#{orderController.addProduct}"></h:commandButton>
+				</div>
+			</div>
+		</h:form>
+	</h:panelGroup>
+	<br />
+	<h:form>
+		<div>
+			<h:commandLink value="Visualizza catalogo prodotti"
+				action="#{productController.showProducts}">
+			</h:commandLink>
+		</div>
+
+	</h:form>
+</h:body>
+</html>

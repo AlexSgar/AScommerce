@@ -1,14 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=US-ASCII" pageEncoding="US-ASCII"%>
-<%@ taglib prefix="f"  uri="http://java.sun.com/jsf/core"%>
-<%@ taglib prefix="h"  uri="http://java.sun.com/jsf/html"%>
 <!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<html xmlns:h="http://java.sun.com/jsf/html"
+ 	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
 <title>Inserimento Prodotto</title>
-</head>
-<body>
-	<f:view>
+</h:head>
+<h:body>
 		<h:form>
     		<div>Nome: <h:inputText value="#{productController.name}" 
                      required="true"
@@ -43,6 +39,5 @@
 			</div>
 			
 		</h:form>
-	</f:view>
-</body>
+</h:body>
 </html>

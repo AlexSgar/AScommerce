@@ -31,5 +31,10 @@ public class OrderFacade {
 		tq.setParameter("id", idCustomer);
 		return tq.getResultList();
 	}
+
+	public List<Order> getAllOrdersClosed() {
+		TypedQuery<Order> tq = em.createQuery("SELECT * FROM Orders o WHERE o.fulfiltime ISNULL", Order.class);
+		return tq.getResultList();
+	}
 	
 }

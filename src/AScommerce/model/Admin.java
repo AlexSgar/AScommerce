@@ -1,19 +1,11 @@
 package AScommerce.model;
 
 
-import java.util.Date;
-
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 public class Admin {
@@ -31,28 +23,20 @@ public class Admin {
 	@Column(nullable=false)
 	private String password;
 	
-	@Temporal(TemporalType.DATE)
-	private Date dateOfBirth;
-	
-	@Temporal(TemporalType.DATE)
-	private Date dateOfRegistration;
-	
-	@Column(nullable = false)
-	@OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
-	private Address address;
-	
 	@Column(nullable = false)
 	private String email;
 	
 	
-	public Admin(String name, String surname,String password,String email,Date dateOfBirth,Address address){
+	public Admin(String name, String surname,String password,String email){
 		this.name = name;
 		this.surname = surname;
 		this.password = password;
-		this.dateOfBirth = dateOfBirth;
-		this.dateOfRegistration = new Date();
-		this.address = address;
 		this.email = email;
+	}
+	
+	public void checkPassword(String password) throws InvalidPasswordException{
+		if (!this.password.equals(password))
+			throw new InvalidPasswordException();
 	}
 
 	public Long getId() {
@@ -85,30 +69,6 @@ public class Admin {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public Date getDateOfBirth() {
-		return dateOfBirth;
-	}
-
-	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
-
-	public Date getDateOfRegistration() {
-		return dateOfRegistration;
-	}
-
-	public void setDateOfRegistration(Date dateOfRegistration) {
-		this.dateOfRegistration = dateOfRegistration;
-	}
-
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
 	}
 
 	public String getEmail() {

@@ -7,14 +7,9 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.ManyToMany;
 
 import AScommerce.facade.ProductFacade;
 import AScommerce.model.Product;
-import AScommerce.model.Provider;
 
 @ManagedBean(name = "productController")
 public class ProductController extends SessionController{

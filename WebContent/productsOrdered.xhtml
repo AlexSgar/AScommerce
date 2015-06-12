@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+ 	  xmlns:f="http://java.sun.com/jsf/core"
+ 	  xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+<title>Prodotti di un ordine</title>
+</h:head>
+<h:body>
+		<h1>Ecco i prodotti nell'ordine </h1>
+		
+			<table>
+			<tr><th>Nome</th><th>Prezzo</th><th>Quantita'</th> </tr>
+			<c:forEach var="orderLine" items="#{orderController.getOrderLines()}">
+			<tr> <td> ${orderLine.product.name}
+				</td>
+				<td>${orderLine.unitPrice}</td>
+				<td>${orderLine.quantity}</td>
+			
+			</tr>
+			</c:forEach>
+			
+			<h:panelGroup rendered="#{orderController.isAdminLogged()}">
+				<h:form>
+					<h:commandButton value="Evadi ordine" action="#{orderController.evadeOrder}">
+					</h:commandButton>
+				</h:form>
+			</h:panelGroup>
+			</table>
+		<br/>
+		
+		<h:form>
+			<h:panelGroup rendered="#{orderController.isOrderingAProduct()}">
+			<div><h:commandLink value="Visualizza i tuoi Ordini" action="#{orderController.showOrders}" > </h:commandLink></div>
+			</h:panelGroup>
+			<div><h:outputLink value="home.xhtml"> Torna alla home </h:outputLink></div>
+		</h:form>
+
+</h:body>
+</html>
