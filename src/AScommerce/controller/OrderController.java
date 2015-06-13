@@ -9,7 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 
 import AScommerce.facade.OrderFacade;
-import AScommerce.facade.ProductFacade;
+import AScommerce.model.ImpossibleEvadeOrder;
 import AScommerce.model.Order;
 import AScommerce.model.OrderLine;
 import AScommerce.model.Product;
@@ -23,11 +23,12 @@ public class OrderController extends SessionController {
 	private Long idOrder;
 	private Long quantity;
 	private Order currentOrder;
+	private String infoOrdine;
 	
+	
+
 	@EJB
 	private OrderFacade orderFacade;
-	@EJB
-	private ProductFacade productFacade;
 	
 	@PostConstruct
 	public void initOrderController(){
@@ -52,30 +53,45 @@ public class OrderController extends SessionController {
 	public String endOrder(){
 		this.orderFacade.createOrder(currentOrder);
 		this.currentOrder.setClosedTime(new Date());
+		this.removeAttribute("currentOrder");
+		this.removeAttribute("currentProduct");
 		return "productsOrdered";
 	}
 	
-//	public String evadeOrder(){
-//		this.orderFacade.evadeOrder(this.currentOrder);
-//		return "productsOrdered";
-//	}
-	
-	public String showOrders(){
-		return "orders";
+	public String cancelOrder(){
+		this.removeAttribute("currentOrder");
+		this.removeAttribute("currentProduct");
+		return "home";
 	}
-	public String showOrdersToEvade(){
-		return "ordersToEvade";
+	
+	public String evadeOrder(){
+		try {
+			this.orderFacade.evadeOrder(this.currentOrder);
+			this.infoOrdine = "Ordine Evaso correttamente";
+		}
+		catch(ImpossibleEvadeOrder e ){
+			this.infoOrdine = "Impossibile evadere l'ordine,la quantita di \n"+e.getMessage()+"\n non e' disponbile";
+		}
+		this.removeAttribute("currentOrder");
+		return "productsOrdered";
 	}
 	
 	public String findOrder(){
 		this.currentOrder = this.orderFacade.findOrder(idOrder);
-		this.setSessionAttribute("currentOrder",this.currentOrder);
 		return "productsOrdered";
 	}
 	
-	public List<OrderLine> getOrderLines(){
-		return this.currentOrder.getOrderLines();
+	public String findOrderToEvade(){
+		this.currentOrder = this.orderFacade.findOrder(idOrder);
+		this.setSessionAttribute("currentOrder", this.currentOrder);
+		return "productsOrdered";
 	}
+	
+	public String retrieveCustomerInfo(){
+		this.currentOrder = this.orderFacade.findOrder(idOrder);
+		return "customerInfo";
+	}
+	
 	
 	public List<Order> getAllOrders(){
 		return this.orderFacade.getAllOrders(this.getCurrentCustomer().getId());
@@ -85,14 +101,19 @@ public class OrderController extends SessionController {
 		return this.orderFacade.getAllOrdersClosed();
 	}
 	
-	public boolean isOrderingAProduct(){
-		return this.currentOrder!=null;
+	public boolean isCustomerOrderingAProduct(){
+		return this.getCurrentCustomer()!=null && this.currentOrder!=null;
 	}
 	
 	
-	public boolean isOrderingAndCanClose(){
-		return this.currentOrder!=null && this.currentOrder.getOrderLines().size()>0;
+	public boolean isCustomerOrderingAndCanClose(){
+		return this.getCurrentCustomer()!=null &&
+				this.currentOrder!=null &&
+				this.currentOrder.getOrderLines().size()>0;
 	}
+	
+	
+	//getter e setter
 	
 	public Long getIdOrder() {
 		return idOrder;
@@ -117,5 +138,11 @@ public class OrderController extends SessionController {
 	public void setCurrentOrder(Order currentOrder) {
 		this.currentOrder = currentOrder;
 	}
+	public String getInfoOrdine() {
+		return infoOrdine;
+	}
 
+	public void setInfoOrdine(String infoOrdine) {
+		this.infoOrdine = infoOrdine;
+	}
 }

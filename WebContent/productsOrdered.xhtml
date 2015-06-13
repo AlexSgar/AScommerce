@@ -10,7 +10,7 @@
 		
 			<table>
 			<tr><th>Nome</th><th>Prezzo</th><th>Quantita'</th> </tr>
-			<c:forEach var="orderLine" items="#{orderController.getOrderLines()}">
+			<c:forEach var="orderLine" items="#{orderController.currentOrder.getOrderLines()}">
 			<tr> <td> ${orderLine.product.name}
 				</td>
 				<td>${orderLine.unitPrice}</td>
@@ -18,21 +18,27 @@
 			
 			</tr>
 			</c:forEach>
-			
+			</table>
+			<br/>
 			<h:panelGroup rendered="#{orderController.isAdminLogged()}">
 				<h:form>
 					<h:commandButton value="Evadi ordine" action="#{orderController.evadeOrder}">
-					</h:commandButton>
+					</h:commandButton> ${orderController.infoOrdine}
+					<div><h:outputLink value ="ordersToEvade.xhtml"> Torna agli ordini chiusi
+						</h:outputLink>
+					</div>
 				</h:form>
 			</h:panelGroup>
-			</table>
+			
 		<br/>
 		
 		<h:form>
-			<h:panelGroup rendered="#{orderController.isOrderingAProduct()}">
-			<div><h:commandLink value="Visualizza i tuoi Ordini" action="#{orderController.showOrders}" > </h:commandLink></div>
+			<h:panelGroup rendered="#{orderController.isCustomerLogged()}">
+			<div>
+				<h:outputLink value="orders.xhtml"> Visualizza ordini</h:outputLink>
+			</div>
 			</h:panelGroup>
-			<div><h:outputLink value="home.xhtml"> Torna alla home </h:outputLink></div>
+		<div><h:outputLink value="home.xhtml"> Torna alla home </h:outputLink></div>
 		</h:form>
 
 </h:body>

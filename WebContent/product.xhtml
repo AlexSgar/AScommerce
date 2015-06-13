@@ -5,7 +5,7 @@
 	<title>Prodotto</title>
 </h:head>
 <h:body>
-	<h1>Prodotto Inserito</h1>
+	<h1>Ecco i dettagli del Prodotto</h1>
 	<h2>${productController.product.name}</h2>
 	<h3>Dettagli</h3>
 	<div>Codice: ${productController.product.code}</div>
@@ -15,7 +15,7 @@
 		${productController.product.quantityAvaiable}</div>
 
 	<br />
-	<h:panelGroup rendered="#{orderController.isOrderingAProduct()}">
+	<h:panelGroup rendered="#{orderController.isCustomerOrderingAProduct()}">
 		<h:form>
 			<div>
 				Quantita' :
@@ -24,8 +24,8 @@
 				</h:inputText>
 				<h:message for="qty" />
 				<div>
-					<h:commandButton value="Aggiungi all'acquisto"
-						action="#{orderController.addProduct}"></h:commandButton>
+					<h:commandButton value="Aggiungi all'acquisto" action="#{orderController.addProduct}">
+					</h:commandButton>
 				</div>
 			</div>
 		</h:form>
@@ -33,11 +33,8 @@
 	<br />
 	<h:form>
 		<div>
-			<h:commandLink value="Visualizza catalogo prodotti"
-				action="#{productController.showProducts}">
-			</h:commandLink>
+			<h:outputLink value="products.xhtml" >Catalogo Prodotti</h:outputLink>
 		</div>
-
 	</h:form>
 </h:body>
 </html>

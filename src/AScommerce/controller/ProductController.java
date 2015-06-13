@@ -26,11 +26,6 @@ public class ProductController extends SessionController{
 	
 	@EJB(beanName="productFacade")
 	private ProductFacade productFacade;
-
-	@PostConstruct
-	public void initProductController(){
-		this.product = (Product) this.getSessionAttribute("currentProduct");
-	}
 	
 	
 	public String createProduct(){
@@ -42,9 +37,6 @@ public class ProductController extends SessionController{
 		return this.productFacade.getAllProducts();
 	}
 	
-	public String showProducts(){
-		return "products";
-	}
 	
 	public String findProduct(){
 		this.product = this.productFacade.findProduct(id);

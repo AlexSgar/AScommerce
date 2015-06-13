@@ -78,7 +78,11 @@ public class AScommerceController extends SessionController{
 		}
 		return nextPage;
 	}
-
+	
+	public String logOut(){
+		this.invalidateSession();
+		return "home";
+	}
 
 	//getter e setter
 

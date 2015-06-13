@@ -34,11 +34,16 @@
 	</h:form>
 	<br />
 	<h:form>
-		<h:panelGroup rendered="#{orderController.isOrderingAndCanClose()}">
-			<h:commandButton value="Chiudi Ordine"
-				action="#{orderController.endOrder}"></h:commandButton>
+	
+		<h:panelGroup rendered="#{orderController.isCustomerOrderingAProduct()}">
+		<div><h:commandButton value="Cancella ordine" action="#{orderController.cancelOrder}"></h:commandButton></div>
 		</h:panelGroup>
-		<h:outputLink value="home.xhtml"> Torna alla home </h:outputLink>
+		
+		<h:panelGroup rendered="#{orderController.isCustomerOrderingAndCanClose()}">
+			<h:commandButton value="Chiudi Ordine" action="#{orderController.endOrder}"></h:commandButton>
+		</h:panelGroup>
+		
 	</h:form>
+	<div><h:outputLink value="home.xhtml"> Torna alla home </h:outputLink></div>
 </h:body>
 </html>

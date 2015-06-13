@@ -11,14 +11,21 @@
 			<table>
 				<c:forEach var="order" items="#{orderController.getAllOrdersClosed()}">
 					<tr>
-						<th>Data Creazione</th>
+						<th>Id Ordine</th><th>Data Creazione</th> <th>Nome Cliente</th> <th>Cognome Cliente</th>
 					</tr>
 					<tr>
+						<td>${order.id}</td>
 						<td><h:commandLink value="#{order.creationTime}"
-								action="#{orderController.findOrder}">
+								action="#{orderController.findOrderToEvade}">
 								<f:param name="id" value="#{order.id}"></f:param>
 							</h:commandLink></td>
+						<td><h:commandLink value="#{order.customer.name}" action="#{orderController.retrieveCustomerInfo}">
+							<f:param name="id" value="#{order.id}"></f:param>
+							</h:commandLink></td>
+						<td>${order.customer.surname}</td>
 					</tr>
+					
+					
 
 				</c:forEach>
 			</table>
@@ -26,7 +33,7 @@
 		</h:form>
 		<br />
 		<h:form>
-			<h:outputLink value="home.xhtml"> Torna alla home </h:outputLink>
+			<h:commandButton value="Torna alla home" action="#{orderController.cancelOrder}"> </h:commandButton>
 		</h:form>
 </h:body>
 </html>

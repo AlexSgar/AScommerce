@@ -30,6 +30,19 @@ public class SessionController {
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
 		return session.getAttribute(value);
 	}
+	public void removeAttribute(String nameAttribute){
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+		session.removeAttribute(nameAttribute);
+	}
+	
+	public void invalidateSession(){
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+		session.invalidate();
+		this.currentAdmin=null;
+		this.currentCustomer=null;
+	}
 	
 	public Customer getCurrentCustomer() {
 		return currentCustomer;
@@ -50,5 +63,9 @@ public class SessionController {
 	}
 	public boolean isAdminLogged(){
 		return this.currentAdmin!=null;
+	}
+	
+	public boolean isNotThereAUser(){
+		return this.currentAdmin==null && this.currentCustomer==null;
 	}
 }

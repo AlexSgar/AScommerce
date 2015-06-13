@@ -13,25 +13,45 @@ xmlns:h="http://java.sun.com/jsf/html"
 				${aScommerceController.getCurrentCustomer().surname}</h2>
 
 		</div>
+		
+		<h:panelGroup rendered="#{aScommerceController.isNotThereAUser()}">
+		<div><h:outputLink value="logIn.xhtml">LogIn</h:outputLink>
+		</div>
+		<div><h:outputLink value="signUp.xhtml">SignUp</h:outputLink>
+		</div>
+		</h:panelGroup>
+		<br/>
+		<h:form><div><h:commandLink value="LogOut" action="#{aScommerceController.logOut}"></h:commandLink></div>
+		</h:form>
+		<br/>
+					
 		<h:panelGroup rendered="#{aScommerceController.isCustomerLogged()}">
 			<h:form>
 				<div>
 					<h:commandLink value="Crea Ordine" action="#{orderController.initOrder}"></h:commandLink>
 				</div>
+			</h:form>
 				<div>
-					<h:commandLink value="Visualizza Ordini" action="#{orderController.showOrders}"></h:commandLink>
+					<h:outputLink value="orders.xhtml"> Visualizza Ordini</h:outputLink>
 				</div>
-			</h:form>
+			
+				
+			
 		</h:panelGroup>
+		
 		<h:panelGroup rendered="#{aScommerceController.isAdminLogged()}">
-			<h:form>
-				<div><h:commandLink value="Evadi Ordine" action="#{orderController.showOrdersToEvade}"></h:commandLink></div>
-			</h:form>
+			<div>
+					<h:outputLink value="ordersToEvade.xhtml">Evadi Ordine</h:outputLink>
+			</div>
+			<div>
+					<h:outputLink  value="newProduct.xhtml"> Inserisci un nuovo prodotto </h:outputLink>
+			</div>
+			<div>
+					<h:outputLink  value="retrieveCustomerInfo.xhtml"> Richiedi info cliente </h:outputLink>
+			</div>
 		</h:panelGroup>
 
-		<h:form>
-			<h:commandLink value="Lista Prodotti"
-				action="#{productController.showProducts}"></h:commandLink>
-		</h:form>
+			<h:outputLink value="products.xhtml">Catalogo Prodotti</h:outputLink>
+		
 </h:body>
 </html>
