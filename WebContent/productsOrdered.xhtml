@@ -23,7 +23,7 @@
 			<h:panelGroup rendered="#{orderController.isAdminLogged()}">
 				<h:form>
 					<h:commandButton value="Evadi ordine" action="#{orderController.evadeOrder}">
-					</h:commandButton> ${orderController.infoOrdine}
+					</h:commandButton> ${orderController.message}
 					<div><h:outputLink value ="ordersToEvade.xhtml"> Torna agli ordini chiusi
 						</h:outputLink>
 					</div>

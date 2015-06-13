@@ -31,6 +31,7 @@ public class AScommerceController extends SessionController{
 	private String country;
 	private String email;
 	private Collection<Order> orders;
+	private String message;
 
 	@EJB
 	private CustomerFacade customerFacade;
@@ -61,7 +62,7 @@ public class AScommerceController extends SessionController{
 				this.setCurrentCustomer(c);
 			}
 			catch(InvalidPasswordException e){
-				nextPage = "error";
+				this.message = "Impossibile Autenticarsi";
 			}
 		} else {
 			Admin a = this.adminFacade.findAdmin(email);
@@ -71,10 +72,10 @@ public class AScommerceController extends SessionController{
 					this.setCurrentAdmin(a);
 				}
 				catch(InvalidPasswordException e){
-					nextPage="error";
+					this.message = "Impossibile Autenticarsi";
 				}
 			}
-			else nextPage="error";
+			else this.message = "Impossibile Autenticarsi";
 		}
 		return nextPage;
 	}
@@ -182,6 +183,14 @@ public class AScommerceController extends SessionController{
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 

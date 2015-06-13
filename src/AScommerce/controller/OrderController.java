@@ -23,7 +23,7 @@ public class OrderController extends SessionController {
 	private Long idOrder;
 	private Long quantity;
 	private Order currentOrder;
-	private String infoOrdine;
+	private String message;
 	
 	
 
@@ -67,10 +67,10 @@ public class OrderController extends SessionController {
 	public String evadeOrder(){
 		try {
 			this.orderFacade.evadeOrder(this.currentOrder);
-			this.infoOrdine = "Ordine Evaso correttamente";
+			this.message = "Ordine Evaso correttamente";
 		}
 		catch(ImpossibleEvadeOrder e ){
-			this.infoOrdine = "Impossibile evadere l'ordine,la quantita di \n"+e.getMessage()+"\n non e' disponbile";
+			this.message = "Impossibile evadere l'ordine,la quantita di \n"+e.getMessage()+"\n non e' disponbile";
 		}
 		this.removeAttribute("currentOrder");
 		return "productsOrdered";
@@ -139,10 +139,10 @@ public class OrderController extends SessionController {
 		this.currentOrder = currentOrder;
 	}
 	public String getInfoOrdine() {
-		return infoOrdine;
+		return message;
 	}
 
 	public void setInfoOrdine(String infoOrdine) {
-		this.infoOrdine = infoOrdine;
+		this.message = infoOrdine;
 	}
 }

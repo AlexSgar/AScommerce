@@ -65,6 +65,10 @@ public class SessionController {
 		return this.currentAdmin!=null;
 	}
 	
+	public boolean isThereAUser(){
+		return this.currentAdmin!=null || this.currentCustomer!=null;
+	}
+	
 	public boolean isNotThereAUser(){
 		return this.currentAdmin==null && this.currentCustomer==null;
 	}

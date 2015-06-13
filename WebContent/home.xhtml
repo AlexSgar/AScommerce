@@ -1,57 +1,124 @@
 
 <!DOCTYPE html>
-<html
-xmlns:h="http://java.sun.com/jsf/html"
- xmlns:f="http://java.sun.com/jsf/core">
+<html xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
-<title>AScommerce</title>
+	<meta charset="utf-8"></meta>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+
+	<link rel="stylesheet" href="./resources/css/bootstrap.min.css"></link>
+
+	<link rel="stylesheet" href="./resources/css/bootstrap-theme.min.css"></link>
+
+	<link rel="stylesheet" href="./resources/css/theme.css"></link>
+
+	<title>AScommerce</title>
 </h:head>
-<h:body>
-	<h1>Benvenuti in AScommerce</h1>
+<h:body >
+	<div class="container">
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+						aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">AScommerce</a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="#">Home</a></li>
+						<li><a href="#">About</a></li>
+						<li><a href="#">Contact</a></li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown" role="button" aria-expanded="false">Dropdown
+								<span class="caret"></span>
+						</a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#">Action</a></li>
+								<li><a href="#">Another action</a></li>
+								<li><a href="#">Something else here</a></li>
+								<li class="divider"></li>
+								<li class="dropdown-header">Nav header</li>
+								<li><a href="#">Separated link</a></li>
+								<li><a href="#">One more separated link</a></li>
+							</ul></li>
+					</ul>
+
+					<ul class="nav navbar-nav navbar-right">
+
+						<h:panelGroup rendered="#{aScommerceController.isNotThereAUser()}">
+							<a class="btn btn-lg btn-primary" href="logIn.xhtml"><span
+								class="glyphicon glyphicon-user"></span>Log In</a>
+							<a class="btn btn-lg btn-info" href="signUp.xhtml">Sign Up</a>
+						</h:panelGroup>
+
+						<h:panelGroup rendered="#{aScommerceController.isThereAUser()}">
+							<h:form>
+								<h:commandLink class="btn btn-lg btn-warning" value="Log Out"
+									action="#{aScommerceController.logOut}"></h:commandLink>
+							</h:form>
+
+						</h:panelGroup>
+
+					</ul>
+
+				</div>
+				<!--/.nav-collapse -->
+			</div>
+		</nav>
+
+		<div class="jumbotron">
+			<h1>Benvenuti in AScommerce</h1>
+			<p>Un sito di e-commerce unico nel suo genere!</p>
+
+		</div>
 		<div>
 			<h2>${aScommerceController.getCurrentCustomer().name}
 				${aScommerceController.getCurrentCustomer().surname}</h2>
 
 		</div>
-		
-		<h:panelGroup rendered="#{aScommerceController.isNotThereAUser()}">
-		<div><h:outputLink value="logIn.xhtml">LogIn</h:outputLink>
-		</div>
-		<div><h:outputLink value="signUp.xhtml">SignUp</h:outputLink>
-		</div>
-		</h:panelGroup>
-		<br/>
-		<h:form><div><h:commandLink value="LogOut" action="#{aScommerceController.logOut}"></h:commandLink></div>
-		</h:form>
-		<br/>
-					
+		<br />
+
 		<h:panelGroup rendered="#{aScommerceController.isCustomerLogged()}">
 			<h:form>
 				<div>
-					<h:commandLink value="Crea Ordine" action="#{orderController.initOrder}"></h:commandLink>
+					<h:commandLink value="Crea Ordine"
+						action="#{orderController.initOrder}"></h:commandLink>
 				</div>
 			</h:form>
-				<div>
-					<h:outputLink value="orders.xhtml"> Visualizza Ordini</h:outputLink>
-				</div>
-			
-				
-			
+			<div>
+				<h:outputLink value="orders.xhtml"> Visualizza Ordini</h:outputLink>
+			</div>
+
+
+
 		</h:panelGroup>
-		
+
 		<h:panelGroup rendered="#{aScommerceController.isAdminLogged()}">
 			<div>
-					<h:outputLink value="ordersToEvade.xhtml">Evadi Ordine</h:outputLink>
+				<h:outputLink value="ordersToEvade.xhtml">Evadi Ordine</h:outputLink>
 			</div>
 			<div>
-					<h:outputLink  value="newProduct.xhtml"> Inserisci un nuovo prodotto </h:outputLink>
+				<h:outputLink value="newProduct.xhtml"> Inserisci un nuovo prodotto </h:outputLink>
 			</div>
 			<div>
-					<h:outputLink  value="retrieveCustomerInfo.xhtml"> Richiedi info cliente </h:outputLink>
+				<h:outputLink value="retrieveCustomerInfo.xhtml"> Richiedi info cliente </h:outputLink>
 			</div>
 		</h:panelGroup>
 
-			<h:outputLink value="products.xhtml">Catalogo Prodotti</h:outputLink>
-		
+		<h:outputLink value="products.xhtml">Catalogo Prodotti</h:outputLink>
+	</div>
+	<script src="./resources/js/bootstrap.min.js"></script>
+	<script src="./resources/js/jquery.action.js"></script>
+	<script src="./resources/js/jquery-1.11.3.min.js"></script>
+	<script src="./resources/js/docs.min.js"></script>
+	
+
+
 </h:body>
 </html>
