@@ -63,6 +63,7 @@ public class AScommerceController extends SessionController{
 			}
 			catch(InvalidPasswordException e){
 				this.message = "Impossibile Autenticarsi";
+				nextPage = "logIn";
 			}
 		} else {
 			Admin a = this.adminFacade.findAdmin(email);
@@ -73,9 +74,13 @@ public class AScommerceController extends SessionController{
 				}
 				catch(InvalidPasswordException e){
 					this.message = "Impossibile Autenticarsi";
+					nextPage = "logIn";;
 				}
 			}
-			else this.message = "Impossibile Autenticarsi";
+			else {
+				this.message = "Impossibile Autenticarsi";
+				nextPage = "logIn";
+			}
 		}
 		return nextPage;
 	}

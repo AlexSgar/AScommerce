@@ -39,6 +39,7 @@ public class OrderController extends SessionController {
 	
 	public String initOrder(){
 		Order newOrder = new Order(this.getCurrentCustomer());
+		this.currentOrder = newOrder;
 		this.setSessionAttribute("currentOrder",newOrder);
 		return "products";
 	}
