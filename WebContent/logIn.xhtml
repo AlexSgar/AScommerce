@@ -2,7 +2,8 @@
 <!DOCTYPE html>
 <html
  xmlns:h="http://java.sun.com/jsf/html"
- xmlns:f="http://java.sun.com/jsf/core" >
+ xmlns:f="http://java.sun.com/jsf/core"
+ xmlns:ui="http://java.sun.com/jsf/facelets">
  <h:head>
 <meta charset="utf-8"></meta>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
@@ -17,8 +18,8 @@
 <title>Log In</title>
 </h:head>
 <h:body>
-	<div class="container">
-    </div>
+	<ui:composition template="./template.xhtml">
+		<ui:define name="content" >
 		<h:form class="form-signin">
 		<h2 class="form-signin-heading">Log In</h2>
 			<label for="inputEmail" class="sr-only">Email address</label>
@@ -40,5 +41,7 @@
 			<p style="color:red"> ${aScommerceController.message}</p>
 			
 		</h:form>
+	</ui:define>
+	</ui:composition>
 </h:body>
 </html>

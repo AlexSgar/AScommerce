@@ -7,8 +7,6 @@ body {
 }
 
 #sfondo_trasparente {
-	margin-top: 7px;
-	float: left;
 	width: 100%; 
 	border-radius: 6px;
 	border : transparent;
@@ -25,6 +23,9 @@ body {
   background-color: #fff;
   border: 1px solid #ddd;
 }
+
+.list-group-item:first-child {
+  margin-bottom: 10px;
 
 .navbar {
 	margin-bottom: 20px;

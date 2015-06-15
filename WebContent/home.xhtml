@@ -8,21 +8,18 @@
 </h:head>
 <h:body>
 	<ui:composition template="./template.xhtml">
-
-		<ui:define name="jumbotron-title">
+		<ui:define name="content-top">
+			<div class="jumbotron"> 
 			<h1>Benvenuti in AScommerce</h1>
-		</ui:define>
-		<ui:define name="jumbotron-text">
-			Un sito di e-commerce unico nel suo genere!
+			<p>Un sito di e-commerce unico nel suo genere!</p>			
+		</div>
 		</ui:define>
 		<ui:define name="content">
-		
-			<br />
 
 			<h:panelGroup rendered="#{aScommerceController.isCustomerLogged()}">
 				<div>
-				<h2>Ciao! ${aScommerceController.getCurrentCustomer().name}
-					${aScommerceController.getCurrentCustomer().surname}</h2>
+				<div><h2>Ciao! ${aScommerceController.getCurrentCustomer().name}
+					${aScommerceController.getCurrentCustomer().surname}</h2></div>
 
 				</div>
 				<div class="list-group">
@@ -53,7 +50,6 @@
 
 			<div class="list-group">
 				<h:link class="btn btn-default btn-block list-group-item" outcome="/products.xhtml">Catalogo Prodotti</h:link>
-
 			</div>
 		</ui:define>
 	</ui:composition>
