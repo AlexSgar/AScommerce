@@ -1,11 +1,10 @@
 
 <!DOCTYPE html>
-<html
- xmlns:h="http://java.sun.com/jsf/html"
- xmlns:f="http://java.sun.com/jsf/core"
- xmlns:ui="http://java.sun.com/jsf/facelets">
- <h:head>
-<meta charset="utf-8"></meta>
+<html xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta charset="utf-8"></meta>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
 	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
 
@@ -14,34 +13,43 @@
 	<link rel="stylesheet" href="./resources/css/bootstrap-theme.min.css"></link>
 
 	<link rel="stylesheet" href="./resources/css/signin.css"></link>
+	<link rel="stylesheet" href="./resources/css/theme.css"></link>
 	<style type="text/css"></style>
-<title>Log In</title>
+	<title>Log In</title>
 </h:head>
 <h:body>
 	<ui:composition template="./template.xhtml">
-		<ui:define name="content" >
-		<h:form class="form-signin">
-		<h2 class="form-signin-heading">Log In</h2>
-			<label for="inputEmail" class="sr-only">Email address</label>
-				<h:inputText id="inputEmail" class="form-control" placeholder="Email address" value="#{aScommerceController.email}" required="true"
-					requiredMessage="Campo obbligatorio"  />
-				<h:message for="inputEmail" />
-			<label for="inputPassword" class="sr-only">Password</label>
-				<h:inputSecret class="form-control" placeholder="Password" value="#{aScommerceController.password}"
-					required="true" requiredMessage="Campo obbligatorio" id="passw" />
-				<h:message for="passw" />
-			<div class="checkbox">
-          		<label>
-            		<input type="checkbox" value="remember-me"> Ricordami</input>
-        	  </label>
-       		 </div>
-				<h:commandButton class="btn btn-lg btn-primary btn-block" value="Invia"
-					action="#{aScommerceController.logIn}" />
-			<br/>	
-			<p style="color:red"> ${aScommerceController.message}</p>
-			
-		</h:form>
-	</ui:define>
+		<ui:define name="content-top">
+			<div id="sfondo_trasparente"
+				style="padding: 6px; float: right; height: 300px; width: 40%">
+				<h:form class="form-signin">
+					<h2 class="form-signin-heading">Log In</h2>
+					<label for="inputEmail" class="sr-only">Email address</label>
+					<h:inputText id="inputEmail" class="form-control"
+						placeholder="Email address" value="#{aScommerceController.email}"
+						required="true" requiredMessage="Campo obbligatorio" />
+					<h:message for="inputEmail" />
+					<label for="inputPassword" class="sr-only">Password</label>
+					<h:inputSecret class="form-control" placeholder="Password"
+						value="#{aScommerceController.password}" required="true"
+						requiredMessage="Campo obbligatorio" id="passw" />
+					<h:message for="passw" />
+					<div class="checkbox">
+						<label> <input type="checkbox" value="remember-me">
+								Ricordami</input>
+						</label>
+					</div>
+					<h:commandButton class="btn btn-lg btn-primary btn-block"
+						value="Invia" action="#{aScommerceController.logIn}" />
+					<br />
+					<div class="alert alert-danger" role="alert">
+						<strong>${aScommerceController.message}</strong> Riprova
+					</div>
+
+
+				</h:form>
+			</div>
+		</ui:define>
 	</ui:composition>
 </h:body>
 </html>
