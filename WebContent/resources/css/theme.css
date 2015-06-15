@@ -6,7 +6,7 @@ body {
 	background-size: cover;
 }
 
-#sfondo_trasparente {
+.sfondo_trasparente {
 	padding:30px;
 	width: 100%; 
 	border-radius: 6px;

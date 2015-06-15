@@ -1,40 +1,58 @@
 <!DOCTYPE html>
 <html xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
+	<link rel="stylesheet" href="./resources/css/featurette.css"></link>
 	<title>Prodotto</title>
 </h:head>
 <h:body>
-	<h1>Ecco i dettagli del Prodotto</h1>
-	<h2>${productController.product.name}</h2>
-	<h3>Dettagli</h3>
-	<div>Codice: ${productController.product.code}</div>
-	<div>Prezzo: ${productController.product.price}</div>
-	<div>Descrizione: ${productController.product.description}</div>
-	<div>Quantita' disponibile:
-		${productController.product.quantityAvaiable}</div>
+	<ui:composition template="./template.xhtml">
+		<ui:define name="content">
+			<div class="sfondo_trasparente">
+				<h1>Ecco i dettagli del Prodotto</h1>
 
-	<br />
-	<h:panelGroup rendered="#{orderController.isCustomerOrderingAProduct()}">
-		<h:form>
-			<div>
-				Quantita' :
-				<h:inputText value="#{orderController.quantity}" required="true"
-					requiredMessage="campo obbligatorio" id="qty">
-				</h:inputText>
-				<h:message for="qty" />
-				<div>
-					<h:commandButton value="Aggiungi all'acquisto" action="#{orderController.addProduct}">
-					</h:commandButton>
-				</div>
+				<div class="row featurette">
+					<div class="col-md-7">
+						<h2 class="featurette-heading">
+							${productController.product.name} 
+							<span class="text-muted">
+								${productController.product.description}</span>
+						</h2>
+						<p class="lead"> Prezzo: ${productController.product.price}</p>
+						<p class="lead">Quantita' disponibile:
+							${productController.product.quantityAvaiable}</p>
+						<p class="lead">Codice: ${productController.product.code}</p>
+						</div>
+						<div class="col-md-5"> 
+							<img class="featurette-image img-responsive center-block" data-src="holder.js/300x300/auto" alt="Generic placeholder image"></img>
+						</div>
+						<h:panelGroup
+							rendered="#{orderController.isCustomerOrderingAProduct()}">
+							<h:form>
+								<div class="input-group col-md-3">
+									<span class="input-group-addon" id="sizing-addon2">Quantita':</span>
+									<h:inputText class="form-control" aria-describedby="sizing-addon2" value="#{orderController.quantity}"
+										required="true" requiredMessage="campo obbligatorio" id="qty">
+									</h:inputText>
+									<h:message for="qty" />
+								</div>
+								<div>
+										<h:commandButton class ="btn btn-md btn-danger" value="Aggiungi all'acquisto"
+											action="#{orderController.addProduct}">
+										</h:commandButton>
+									</div>
+							</h:form>
+						</h:panelGroup>
+						<hr class="featurette-divider"></hr>
+						<h:form>
+							<div>
+								<h:outputLink class="btn btn-primary btn-md" value="products.xhtml">Catalogo Prodotti</h:outputLink>
+							</div>
+						</h:form>
+					</div>
 			</div>
-		</h:form>
-	</h:panelGroup>
-	<br />
-	<h:form>
-		<div>
-			<h:outputLink value="products.xhtml" >Catalogo Prodotti</h:outputLink>
-		</div>
-	</h:form>
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>
