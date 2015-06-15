@@ -1,45 +1,67 @@
 <!DOCTYPE html>
 <html xmlns:h="http://java.sun.com/jsf/html"
- 	  xmlns:f="http://java.sun.com/jsf/core"
- 	  xmlns:c="http://java.sun.com/jsp/jstl/core">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head>
-<title>Prodotti di un ordine</title>
+	<title>Prodotti di un ordine</title>
 </h:head>
 <h:body>
-		<h1>Ecco i prodotti nell'ordine </h1>
-		
-			<table>
-			<tr><th>Nome</th><th>Prezzo</th><th>Quantita'</th> </tr>
-			<c:forEach var="orderLine" items="#{orderController.currentOrder.getOrderLines()}">
-			<tr> <td> ${orderLine.product.name}
-				</td>
-				<td>${orderLine.unitPrice}</td>
-				<td>${orderLine.quantity}</td>
-			
-			</tr>
-			</c:forEach>
-			</table>
-			<br/>
-			<h:panelGroup rendered="#{orderController.isAdminLogged()}">
-				<h:form>
-					<h:commandButton value="Evadi ordine" action="#{orderController.evadeOrder}">
-					</h:commandButton> ${orderController.message}
-					<div><h:outputLink value ="ordersToEvade.xhtml"> Torna agli ordini chiusi
-						</h:outputLink>
+	<ui:composition template="./template.xhtml">
+		<ui:define name="content">
+			<br />
+			<h1>Ecco i prodotti nell'ordine</h1>
+			<br />
+			<div class="row">
+				<c:forEach var="orderLine"
+					items="#{orderController.currentOrder.getOrderLines()}">
+					<div class="col-sm-6 col-md-4">
+						<div class="thumbnail">
+							<img data-src="holder.js/100%x200" alt="100%x200"
+								src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDI0MiAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjkyLjQ2MDkzNzUiIHk9IjEwMCIgc3R5bGU9ImZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMXB0O2RvbWluYW50LWJhc2VsaW5lOmNlbnRyYWwiPjI0MngyMDA8L3RleHQ+PC9nPjwvc3ZnPg=="
+								data-holder-rendered="true"
+								style="height: 200px; width: 100%; display: block;"></img>
+							<div class="caption">
+								<h3>${orderLine.product.name}</h3>
+								<p>${orderLine.unitPrice}</p>
+								<p>${orderLine.quantity}</p>
+							</div>
+						</div>
 					</div>
-				</h:form>
-			</h:panelGroup>
-			
-		<br/>
-		
-		<h:form>
-			<h:panelGroup rendered="#{orderController.isCustomerLogged()}">
-			<div>
-				<h:outputLink value="orders.xhtml"> Visualizza ordini</h:outputLink>
+				</c:forEach>
 			</div>
-			</h:panelGroup>
-		<div><h:outputLink value="home.xhtml"> Torna alla home </h:outputLink></div>
-		</h:form>
 
+			<h:form>
+
+				<h:panelGroup rendered="#{orderController.isAdminLogged()}">
+					<div class="list-group">
+
+						<h:commandLink class="btn btn-default btn-block list-group-item"
+							value="Evadi ordine" action="#{orderController.evadeOrder}" />
+						${orderController.message}
+
+						<h:link class="btn btn-default btn-block list-group-item"
+							outcome="ordersToEvade.xhtml"> Torna agli ordini chiusi</h:link>
+					</div>
+
+				</h:panelGroup>
+			</h:form>
+			<br />
+			<h:form>
+
+				<h:panelGroup rendered="#{orderController.isCustomerLogged()}">
+					<div class="list-group">
+
+
+						<h:link class="btn btn-default btn-block list-group-item"
+							outcome="orders.xhtml"> Visualizza ordini</h:link>
+					</div>
+
+				</h:panelGroup>
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
 </h:body>
+
 </html>
