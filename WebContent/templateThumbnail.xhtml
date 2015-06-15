@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<meta charset="utf-8"></meta>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+
+	<link rel="stylesheet" href="./resources/css/bootstrap.min.css"></link>
+
+	<link rel="stylesheet" href="./resources/css/bootstrap-theme.min.css"></link>
+
+	<link rel="stylesheet" href="./resources/css/theme.css"></link>
+	<title></title>
+</h:head>
+<h:body>
+	<div class="cantainer-fixed">
+
+			<c:forEach var="product" items="#{listaProd}">
+				<div class="col-sm-6 col-md-4">
+					<div class="thumbnail">
+						<img data-src="holder.js/100%x200" alt="100%x200"
+							src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDI0MiAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjkyLjQ2MDkzNzUiIHk9IjEwMCIgc3R5bGU9ImZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMXB0O2RvbWluYW50LWJhc2VsaW5lOmNlbnRyYWwiPjI0MngyMDA8L3RleHQ+PC9nPjwvc3ZnPg=="
+							data-holder-rendered="true"
+							style="height: 200px; width: 100%; display: block;"></img>
+						<div class="caption">
+							<h3>${product.name}</h3>
+							<p>${product.code}</p>
+							<p>${product.description}</p>
+							<p>
+								<h:form>
+									<h:commandLink class="btn btn-default" role="button"
+										action="#{productController.findProduct}" value="Dettagli">
+										<f:param name="id" value="#{product.id}" />
+									</h:commandLink>
+								</h:form>
+							</p>
+						</div>
+					</div>
+					</div>
+			</c:forEach>
+
+
+		
+	</div>
+
+	<script src="./resources/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="./resources/js/jquery.action.js"></script>
+	<script src="./resources/js/docs.min.js"></script>
+
+</h:body>
+</html>

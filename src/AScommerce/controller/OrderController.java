@@ -146,4 +146,10 @@ public class OrderController extends SessionController {
 	public void setInfoOrdine(String infoOrdine) {
 		this.message = infoOrdine;
 	}
+	public String getMessage(){
+		return this.message;
+	}
+	public void setMessage(String message){
+		this.message=message;
+	}
 }

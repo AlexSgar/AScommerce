@@ -10,28 +10,30 @@
 	<ui:composition template="./template.xhtml">
 
 		<ui:define name="jumbotron-title">
-			Benvenuti in AScommerce
+			<h1>Benvenuti in AScommerce</h1>
 		</ui:define>
 		<ui:define name="jumbotron-text">
 			Un sito di e-commerce unico nel suo genere!
 		</ui:define>
 		<ui:define name="content">
-			<div>
-				<h2>Ciao! ${aScommerceController.getCurrentCustomer().name}
-					${aScommerceController.getCurrentCustomer().surname}</h2>
-
-			</div>
+		
 			<br />
 
 			<h:panelGroup rendered="#{aScommerceController.isCustomerLogged()}">
-				<h:form>
-					<div>
-						<h:commandLink value="Crea Ordine"
-							action="#{orderController.initOrder}"></h:commandLink>
-					</div>
-				</h:form>
 				<div>
-					<h:outputLink value="orders.xhtml"> Visualizza Ordini</h:outputLink>
+				<h2>Ciao! ${aScommerceController.getCurrentCustomer().name}
+					${aScommerceController.getCurrentCustomer().surname}</h2>
+
+				</div>
+				<div class="list-group">
+					<h:form>
+
+						<h:commandLink class="btn btn-default btn-block list-group-item"
+							value="Crea Ordine" action="#{orderController.initOrder}" />
+
+					</h:form>
+					<h:link class="btn btn-default btn-block list-group-item"
+						outcome="/orders.xhtml"> Visualizza Ordini</h:link>
 				</div>
 
 
@@ -39,18 +41,20 @@
 			</h:panelGroup>
 
 			<h:panelGroup rendered="#{aScommerceController.isAdminLogged()}">
-				<div>
-					<h:outputLink value="ordersToEvade.xhtml">Evadi Ordine</h:outputLink>
-				</div>
-				<div>
-					<h:outputLink value="newProduct.xhtml"> Inserisci un nuovo prodotto </h:outputLink>
-				</div>
-				<div>
-					<h:outputLink value="retrieveCustomerInfo.xhtml"> Richiedi info cliente </h:outputLink>
+				<h2>Ciao! admin</h2>
+				<div class="list-group">
+					<h:outputLink class="btn btn-default btn-block list-group-item" value="ordersToEvade.xhtml">Evadi Ordine</h:outputLink>
+				
+					<h:outputLink class="btn btn-default btn-block list-group-item" value="newProduct.xhtml"> Inserisci un nuovo prodotto </h:outputLink>
+				
+					<h:outputLink class="btn btn-default btn-block list-group-item" value="retrieveCustomerInfo.xhtml"> Richiedi info cliente </h:outputLink>
 				</div>
 			</h:panelGroup>
 
-			<h:outputLink value="products.xhtml">Catalogo Prodotti</h:outputLink>
+			<div class="list-group">
+				<h:link class="btn btn-default btn-block list-group-item" outcome="/products.xhtml">Catalogo Prodotti</h:link>
+
+			</div>
 		</ui:define>
 	</ui:composition>
 
