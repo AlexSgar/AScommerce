@@ -20,8 +20,7 @@
 <h:body>
 	<ui:composition template="./template.xhtml">
 		<ui:define name="content-top">
-			<div id="sfondo_trasparente"
-				style="padding: 6px; float: right; height: 300px; width: 40%">
+			<div id="sfondo_trasparente" style="padding: 6px; float: right; height: 300px; width: 40%">
 				<h:form class="form-signin">
 					<h2 class="form-signin-heading">Log In</h2>
 					<label for="inputEmail" class="sr-only">Email address</label>
@@ -43,7 +42,7 @@
 						value="Invia" action="#{aScommerceController.logIn}" />
 					<br />
 					<div class="alert alert-danger" role="alert">
-						<strong>${aScommerceController.message}</strong> Riprova
+						<strong>${aScommerceController.message}</strong>
 					</div>
 
 

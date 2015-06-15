@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:h="http://java.sun.com/jsf/html"
- 	  xmlns:f="http://java.sun.com/jsf/core">
+ 	  xmlns:f="http://java.sun.com/jsf/core"
+ 	  xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 <title>Registrazione</title>
 </h:head>
-<h:body>
+<h:body>	
+		<ui:composition template="./template.xhtml">
+		<ui:define name="content">
 		<h:form>
-    		<div>Nome: <h:inputText value="#{aScommerceController.name }" 
+		<div class="input-group col-lg-6">
+			
+    		<span class="input-group-addon" id="sizing-addon2">Nome:</span>
+    			 <h:inputText class="form-control" aria-describedby="sizing-addon2" value="#{aScommerceController.name }" 
                      required="true"
                      requiredMessage="Il nome e' obbligatorio"
                      id="name"/> <h:message for="name" />
-			</div>
-    		<div>Cognome: <h:inputText value="#{aScommerceController.surname}" 
+         </div>        
+    		<div class="input-group col-lg-6">
+    			<span class="input-group-addon" id="sizing-addon2">Cognome:</span>
+    				 <h:inputText class="form-control" aria-describedby="sizing-addon2" value="#{aScommerceController.surname}" 
                      required="true"
                      requiredMessage="Il cognome e' obbligatorio"
                      id="surname"/> <h:message for="surname" />
@@ -63,6 +71,8 @@
 			<div>
 				<h:commandButton value="Submit"  action="#{aScommerceController.signUp}"/>
 			</div>
-		</h:form>
+			</h:form>
+		</ui:define>
+		</ui:composition>
 </h:body>
 </html>
