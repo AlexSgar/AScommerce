@@ -89,8 +89,14 @@ public class OrderController extends SessionController {
 	}
 	
 	public String retrieveCustomerInfo(){
+		String nextPage="customerInfo";
 		this.currentOrder = this.orderFacade.findOrder(idOrder);
-		return "customerInfo";
+		if (this.currentOrder==null){
+			this.message="Ordine inesistente";
+			nextPage="retrieveCustomerInfo";
+		}
+		return nextPage;
+		
 	}
 	
 	
