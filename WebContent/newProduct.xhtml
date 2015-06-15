@@ -1,43 +1,66 @@
 <!DOCTYPE html>
 <html xmlns:h="http://java.sun.com/jsf/html"
- 	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-<title>Inserimento Prodotto</title>
+	<title>Inserimento Prodotto</title>
 </h:head>
 <h:body>
-		<h:form>
-    		<div>Nome: <h:inputText value="#{productController.name}" 
-                     required="true"
-                     requiredMessage="Il nome e' obbligatorio"
-                     id="name"/> <h:message for="name" />
-			</div>
-    		<div>Codice: <h:inputText value="#{productController.code}" 
-                     required="true"
-                     requiredMessage="Il codice e' obbligatorio"
-                     id="code"/> <h:message for="code" />
-			</div>
-    		<div>Prezzo: <h:inputText value="#{productController.price}" 
-                     required="true"
-                     requiredMessage="Il prezzo e' obbligatorio"
-                     converterMessage="Il prezzo deve essere un numero"
-                     id="price"/> <h:message for="price" />
-			</div>
-    		<div>Descrizione: <h:inputTextarea value="#{productController.description}" 
-    				required="false" 
-    				cols="20" 
-    				rows="3" /> 
-                     
-			</div>
-			<div>Quantita' Disponibile: <h:inputText value="#{productController.quantityAvaiable}" 
-                     required="true"
-                     requiredMessage="La quantita' e' obbligatoria"
-                     converterMessage="La quantita' deve essere un numero"
-                     id="quantity"/> <h:message for="quantity" />
-			</div>
-			<div>
-				<h:commandButton value="Submit"  action="#{productController.createProduct}"/>
-			</div>
-			
-		</h:form>
+	<ui:composition template="./template.xhtml">
+		<ui:define name="content">
+		<div style="text-align:center;margin-bottom:50px"><h1> Inserisci i dati del prodotto </h1></div>
+			<h:form>
+				<div class="input-group col-lg-6">
+
+					<span class="input-group-addon" id="sizing-addon2">Nome:</span>
+					<h:inputText class="form-control" aria-describedby="sizing-addon2"
+						value="#{productController.name}" required="true"
+						requiredMessage="Il nome e' obbligatorio" id="name" />
+					<h:message for="name" />
+				</div>
+				<div class="input-group col-lg-6">
+
+					<span class="input-group-addon" id="sizing-addon2">Codice:</span>
+					<h:inputText class="form-control" aria-describedby="sizing-addon2"
+						value="#{productController.code}" required="true"
+						requiredMessage="Il codice e' obbligatorio" id="code" />
+					<h:message for="code" />
+				</div>
+
+				<div class="input-group col-lg-6">
+
+					<span class="input-group-addon" id="sizing-addon2">Prezzo:</span>
+					<h:inputText class="form-control" aria-describedby="sizing-addon2"
+						value="#{productController.price}" required="true"
+						requiredMessage="Il prezzo e' obbligatorio"
+						converterMessage="Il prezzo deve essere un numero" id="price" />
+					<h:message for="price" />
+				</div>
+
+				<div class="input-group col-lg-6">
+
+					<span class="input-group-addon" id="sizing-addon2">Descrizione:</span>
+					<h:inputText class="form-control" aria-describedby="sizing-addon2"
+						value="#{productController.description}" required="false"
+						cols="20" rows="3" />
+				</div>
+
+				<div class="input-group col-lg-6">
+
+					<span class="input-group-addon" id="sizing-addon2">Quantita' disponibile:</span>
+					<h:inputText class="form-control" aria-describedby="sizing-addon2"
+						value="#{productController.quantityAvaiable}" required="true"
+						requiredMessage="La quantita' e' obbligatoria" id="quantity" />
+					<h:message for="quantity" />
+				</div>
+
+
+				<div>
+					<h:commandButton class="btn btn-default btn-lg" value="Submit" action="#{productController.createProduct}"/>
+				</div>
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>
