@@ -9,58 +9,62 @@
 <h:body>
 	<ui:composition template="./template.xhtml">
 		<ui:define name="content">
-		<div class="sfondo_trasparente">
-			<br />
-			<h1>Ecco i prodotti nell'ordine</h1>
-			<br />
-			<div class="row">
-				<c:forEach var="orderLine"
-					items="#{orderController.currentOrder.getOrderLines()}">
-					<div class="col-sm-6 col-md-4">
-						<div class="thumbnail">
-							<img data-src="holder.js/100%x200" alt="100%x200"
-								src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDI0MiAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjkyLjQ2MDkzNzUiIHk9IjEwMCIgc3R5bGU9ImZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMXB0O2RvbWluYW50LWJhc2VsaW5lOmNlbnRyYWwiPjI0MngyMDA8L3RleHQ+PC9nPjwvc3ZnPg=="
-								data-holder-rendered="true"
-								style="height: 200px; width: 100%; display: block;"></img>
-							<div class="caption">
-								<h3>${orderLine.product.name}</h3>
-								<p>${orderLine.unitPrice}</p>
-								<p>${orderLine.quantity}</p>
+			<div class="sfondo_trasparente">
+
+				<div class="page-header" style="margin-top: 0px">
+					<h1>Ecco i prodotti nell'ordine</h1>
+				</div>
+
+				<div class="row" style="margin-left: 1px">
+					<ul class="list-group col-md-3" style="text-align: center">
+						<h:form>
+
+							<h:panelGroup rendered="#{orderController.isAdminLogged()}">
+
+								<h:commandLink class="list-group-item" value="Evadi ordine"
+									action="#{orderController.evadeOrder}" />
+
+
+								<h:link class="list-group-item" outcome="ordersToEvade.xhtml"> Torna agli ordini chiusi</h:link>
+
+
+							</h:panelGroup>
+						</h:form>
+					</ul>
+				</div>
+
+				<div class="row">
+					<c:forEach var="orderLine"
+						items="#{orderController.currentOrder.getOrderLines()}">
+						<div class="col-sm-6 col-md-4">
+							<div class="thumbnail">
+								<img data-src="holder.js/100%x200" alt="100%x200"
+									src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDI0MiAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjkyLjQ2MDkzNzUiIHk9IjEwMCIgc3R5bGU9ImZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMXB0O2RvbWluYW50LWJhc2VsaW5lOmNlbnRyYWwiPjI0MngyMDA8L3RleHQ+PC9nPjwvc3ZnPg=="
+									data-holder-rendered="true"
+									style="height: 200px; width: 100%; display: block;"></img>
+								<div class="caption">
+									<h3>${orderLine.product.name}</h3>
+									<p>${orderLine.unitPrice}</p>
+									<p>${orderLine.quantity}</p>
+								</div>
 							</div>
 						</div>
-					</div>
-				</c:forEach>
+					</c:forEach>
+
+				</div>
+				<div class="row">
+					<h:form>
+						<h:panelGroup rendered="#{orderController.isCustomerLogged()}">
+
+							<h:link class="btn btn-default col-md-3 list-group-item"
+								style="margin-left:5px" outcome="orders.xhtml"> Visualizza ordini</h:link>
+
+
+
+						</h:panelGroup>
+					</h:form>
+				</div>
 			</div>
-
-			<h:form>
-
-				<h:panelGroup rendered="#{orderController.isAdminLogged()}">
-					<div class="list-group">
-
-						<h:commandLink class="btn btn-default btn-block list-group-item"
-							value="Evadi ordine" action="#{orderController.evadeOrder}" />
-						${orderController.message}
-
-						<h:link class="btn btn-default btn-block list-group-item"
-							outcome="ordersToEvade.xhtml"> Torna agli ordini chiusi</h:link>
-					</div>
-
-				</h:panelGroup>
-			</h:form>
-			<br />
-			<h:form>
-
-				<h:panelGroup rendered="#{orderController.isCustomerLogged()}">
-					<div class="list-group">
-
-
-						<h:link class="btn btn-default btn-block list-group-item"
-							outcome="orders.xhtml"> Visualizza ordini</h:link>
-					</div>
-
-				</h:panelGroup>
-			</h:form>
-		</div>
 		</ui:define>
 	</ui:composition>
 </h:body>
