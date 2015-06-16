@@ -2,6 +2,8 @@ package AScommerce.controller;
 
 
 import java.util.List;
+
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -25,6 +27,10 @@ public class ProductController extends SessionController{
 	@EJB(beanName="productFacade")
 	private ProductFacade productFacade;
 	
+	@PostConstruct
+	public void initProductController(){
+		this.product = (Product) this.getSessionAttribute("currentProduct");
+	}
 	
 	public String createProduct(){
 		this.product = this.productFacade.createProduct(name, code, description, price, quantityAvaiable);

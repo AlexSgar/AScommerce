@@ -6,6 +6,12 @@ body {
 	background-size: cover;
 }
 
+.page-header{
+  padding-bottom: 9px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
 .sfondo_trasparente {
 	padding:30px;
 	width: 100%; 
@@ -15,15 +21,13 @@ body {
 	
 }
 .input-group{
-	margin-bottom: 10px;!important
+	margin-bottom: 10px;
 }
 
 
 .list-group-item {
   position: relative;
   display: block;
-  /* padding: 10px 15px; */
-  /* margin-bottom: -1px; */
   background-color: #fff;
   border: 1px solid #ddd;
 }
