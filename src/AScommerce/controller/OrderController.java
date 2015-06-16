@@ -1,5 +1,6 @@
 package AScommerce.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -157,5 +158,10 @@ public class OrderController extends SessionController {
 	}
 	public void setMessage(String message){
 		this.message=message;
+	}
+	public String convertDate(Date date){
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		String sdate = sdf.format(date); 
+		return sdate;
 	}
 }

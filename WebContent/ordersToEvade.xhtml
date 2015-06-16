@@ -1,39 +1,58 @@
 <!DOCTYPE html>
 <html xmlns:h="http://java.sun.com/jsf/html"
- 	  xmlns:f="http://java.sun.com/jsf/core"
- 	  xmlns:c="http://java.sun.com/jsp/jstl/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-<title> Ordini </title>
+	<title>Ordini</title>
 </h:head>
 <h:body>
-		<h1>Ecco gli ordini chiusi</h1>
-		<h:form>
-			<table>
-				<c:forEach var="order" items="#{orderController.getAllOrdersClosed()}">
-					<tr>
-						<th>Id Ordine</th><th>Data Creazione</th> <th>Nome Cliente</th> <th>Cognome Cliente</th>
-					</tr>
-					<tr>
-						<td>${order.id}</td>
-						<td><h:commandLink value="#{order.creationTime}"
-								action="#{orderController.findOrderToEvade}">
-								<f:param name="id" value="#{order.id}"></f:param>
-							</h:commandLink></td>
-						<td><h:commandLink value="#{order.customer.name}" action="#{orderController.retrieveCustomerInfo}">
-							<f:param name="id" value="#{order.id}"></f:param>
-							</h:commandLink></td>
-						<td>${order.customer.surname}</td>
-					</tr>
+	<ui:composition template="./template.xhtml">
+		<ui:define name="content">
+			<div class="sfondo_trasparente">
+				<div class="page-header" style="margin-top: 0px">
+					<h1>Ecco gli ordini chiusi</h1>
+				</div>
+				<h:form>
+				<ul class="list-group col-md-3" style="text-align: center">
+					<h:commandLink class="list-group-item " value="Termina"
+							action="#{orderController.cancelOrder}">
+						</h:commandLink>
 					
-					
+				</ul>
+				</h:form>
+				<h:form>
+					<table class="table table-striped">
+							<thead>
+							<tr>
+								<th>Id Ordine</th>
+								<th>Data Creazione</th>
+								<th>Nome Cliente</th>
+								<th>Cognome Cliente</th>
+							</tr>
+							</thead>
+					<tbody>
+						<c:forEach var="order" items="#{orderController.getAllOrdersClosed()}">
+							<tr>
+								<td>${order.id}</td>
+								<td><h:commandLink value="#{order.creationTime}"
+										action="#{orderController.findOrderToEvade}">
+										<f:param name="id" value="#{order.id}"></f:param>
+									</h:commandLink></td>
+								<td><h:commandLink value="#{order.customer.name}"
+										action="#{orderController.retrieveCustomerInfo}">
+										<f:param name="id" value="#{order.id}"></f:param>
+									</h:commandLink></td>
+								<td>${order.customer.surname}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+					</table>
 
-				</c:forEach>
-			</table>
-
-		</h:form>
-		<br />
-		<h:form>
-			<h:commandButton value="Torna alla home" action="#{orderController.cancelOrder}"> </h:commandButton>
-		</h:form>
+				</h:form>
+				
+			</div>
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>

@@ -26,15 +26,16 @@ body {
 
 
 .list-group-item {
+  text-align: center;
   position: relative;
   display: block;
   background-color: #fff;
   border: 1px solid #ddd;
 }
 
-.list-group-item:first-child {
+/*.list-group-item:first-child {
   margin-bottom: 10px;
-
+*/
 .navbar {
 	margin-bottom: 20px;
 }

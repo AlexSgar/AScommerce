@@ -33,17 +33,17 @@
 						<li><a href="#">Contact</a></li>
 
 					</ul>
-					<ul class="nav navbar-nav navbar-right">
+					<ul class="nav navbar-nav navbar-right navbar-form">
 
 						<h:panelGroup rendered="#{aScommerceController.isNotThereAUser()}">
-							<a class="btn btn-lg btn-primary" href="logIn.xhtml"><span
+							<a class="btn btn-md btn-primary" href="logIn.xhtml"><span
 								class="glyphicon glyphicon-user"></span>Log In</a>
-							<a class="btn btn-lg btn-info" href="signUp.xhtml">Sign Up</a>
+							<a class="btn btn-md btn-info" href="signUp.xhtml">Sign Up</a>
 						</h:panelGroup>
 
 						<h:panelGroup rendered="#{aScommerceController.isThereAUser()}">
 							<h:form>
-								<h:commandLink class="btn btn-lg btn-warning" value="Log Out"
+								<h:commandLink class="btn btn-md btn-warning" value="Log Out"
 									action="#{aScommerceController.logOut}"></h:commandLink>
 							</h:form>
 

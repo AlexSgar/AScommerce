@@ -198,7 +198,11 @@ public class AScommerceController extends SessionController{
 		this.message = message;
 	}
 
-
+	public String convertDate(Date date){
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		String sdate = sdf.format(date); 
+		return sdate;
+	}
 
 
 }
