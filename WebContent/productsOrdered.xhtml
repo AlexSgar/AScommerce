@@ -38,8 +38,8 @@
 						items="#{orderController.currentOrder.getOrderLines()}">
 						<div class="col-sm-6 col-md-4">
 							<div class="thumbnail">
-								<img data-src="holder.js/100%x200" alt="100%x200"
-									src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDI0MiAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjkyLjQ2MDkzNzUiIHk9IjEwMCIgc3R5bGU9ImZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMXB0O2RvbWluYW50LWJhc2VsaW5lOmNlbnRyYWwiPjI0MngyMDA8L3RleHQ+PC9nPjwvc3ZnPg=="
+								<img  alt="non presente"
+									src="#{orderLine.product.url}"
 									data-holder-rendered="true"
 									style="height: 200px; width: 100%; display: block;"></img>
 								<div class="caption">
@@ -55,11 +55,10 @@
 				<div class="row">
 					<h:form>
 						<h:panelGroup rendered="#{orderController.isCustomerLogged()}">
-
+						<div style="margin-left:5px">
 							<h:link class="btn btn-default col-md-3 list-group-item"
-								style="margin-left:5px" outcome="orders.xhtml"> Visualizza ordini</h:link>
-
-
+								 outcome="orders.xhtml"> Visualizza ordini</h:link>
+						</div>
 
 						</h:panelGroup>
 					</h:form>

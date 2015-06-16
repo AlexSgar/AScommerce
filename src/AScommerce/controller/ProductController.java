@@ -21,7 +21,10 @@ public class ProductController extends SessionController{
 	private String description;
 	private Float price;
 	private Integer quantityAvaiable;
+	private String url;
+
 	private Product product;
+
 	private List<Product> products;
 	
 	@EJB(beanName="productFacade")
@@ -33,7 +36,7 @@ public class ProductController extends SessionController{
 	}
 	
 	public String createProduct(){
-		this.product = this.productFacade.createProduct(name, code, description, price, quantityAvaiable);
+		this.product = this.productFacade.createProduct(name, code, description, price, quantityAvaiable,url);
 		return "product";
 	}
 	
@@ -103,13 +106,6 @@ public class ProductController extends SessionController{
 	public void setId(Long id){
 		this.id = id;
 	}
-	public Product getProduct() {
-		return product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
-	}
 
 	public List<Product> getProducts() {
 		return products;
@@ -117,5 +113,19 @@ public class ProductController extends SessionController{
 
 	public void setProducts(List<Product> products) {
 		this.products = products;
+	}
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 }

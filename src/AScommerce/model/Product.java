@@ -34,26 +34,33 @@ public class Product {
 	@Column(nullable = false)
 	private Integer quantityAvaiable;
 	
+	@Column(nullable = false)
+	private String url;
+	
+	
 	//@ManyToMany(mappedBy = "products",cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
 	private List<Provider> providers;
+
 	
 	
-	public Product(String name, String code, String description,Float price, Integer quantityAvaiable) {
+	
+	public Product(String name, String code, String description,Float price, Integer quantityAvaiable,String url) {
 		this.name = name;
 		this.code = code;
 		this.description = description;
 		this.price = price;
 		this.quantityAvaiable = quantityAvaiable;
+		this.url=url;
 		this.providers = new LinkedList<Provider>();
 	}
 	
-	public Product(String name, String code, String description,Float price, Integer quantityAvaiable,Provider provider){
-		this(name, code, description,price,quantityAvaiable);
+	public Product(String name, String code, String description,Float price, Integer quantityAvaiable,Provider provider,String url){
+		this(name, code, description,price,quantityAvaiable,url);
 		this.providers.add(provider);
 	}
 	
-	public Product(String name, String code, String description,Float price, Integer quantityAvaiable,List<Provider> providers){
-		this(name, code, description,price,quantityAvaiable);
+	public Product(String name, String code, String description,Float price, Integer quantityAvaiable,List<Provider> providers,String url){
+		this(name, code, description,price,quantityAvaiable,url);
 		this.providers= providers;
 	}
 	
@@ -111,6 +118,13 @@ public class Product {
 	}
 	public void setProvider(Provider fornitore) {
 		this.providers.add(fornitore);
+	}
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 	@Override
 	public boolean equals(Object o){
