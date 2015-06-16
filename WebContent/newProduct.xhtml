@@ -8,58 +8,77 @@
 <h:body>
 	<ui:composition template="./template.xhtml">
 		<ui:define name="content">
-		<div style="text-align:center;margin-bottom:50px"><h1> Inserisci i dati del prodotto </h1></div>
-			<h:form>
-				<div class="input-group col-lg-6">
-
-					<span class="input-group-addon" id="sizing-addon2">Nome:</span>
-					<h:inputText class="form-control" aria-describedby="sizing-addon2"
-						value="#{productController.name}" required="true"
-						requiredMessage="Il nome e' obbligatorio" id="name" />
-					<h:message for="name" />
+			<div class="sfondo_trasparente">
+				<div class="page-header" style="margin-top: 0px">
+					<h1>Inserisci i dati del prodotto</h1>
 				</div>
-				<div class="input-group col-lg-6">
+				<h:form>
+					<div class="input-group col-lg-6">
 
-					<span class="input-group-addon" id="sizing-addon2">Codice:</span>
-					<h:inputText class="form-control" aria-describedby="sizing-addon2"
-						value="#{productController.code}" required="true"
-						requiredMessage="Il codice e' obbligatorio" id="code" />
-					<h:message for="code" />
-				</div>
+						<span style="color:#3c763d; background-color:#dff0d8 "  class="input-group-addon" id="sizing-addon2">Nome:</span>
+						<h:inputText class="form-control" aria-describedby="sizing-addon2"
+							value="#{productController.name}" required="true"
+							requiredMessage="Il nome e' obbligatorio" id="name" />
+					</div>
+					<div style="margin-bottom: 10px;">
+						<strong><h:message style="color:red;margin-bottom:10px"
+								for="name" /></strong>
+					</div>
 
-				<div class="input-group col-lg-6">
+					<div class="input-group col-lg-6">
 
-					<span class="input-group-addon" id="sizing-addon2">Prezzo:</span>
-					<h:inputText class="form-control" aria-describedby="sizing-addon2"
-						value="#{productController.price}" required="true"
-						requiredMessage="Il prezzo e' obbligatorio"
-						converterMessage="Il prezzo deve essere un numero" id="price" />
-					<h:message for="price" />
-				</div>
+						<span style="color:#fff; background-color:#337ab7" class="input-group-addon" id="sizing-addon2">Codice:</span>
+						<h:inputText class="form-control" aria-describedby="sizing-addon2"
+							value="#{productController.code}" required="true"
+							requiredMessage="Il codice e' obbligatorio" id="code" />
+					</div>
+					<div style="margin-bottom: 10px;">
+						<strong><h:message style="color:red;margin-bottom:10px"
+								for="code" /></strong>
+					</div>
 
-				<div class="input-group col-lg-6">
+					<div class="input-group col-lg-6">
 
-					<span class="input-group-addon" id="sizing-addon2">Descrizione:</span>
-					<h:inputText class="form-control" aria-describedby="sizing-addon2"
-						value="#{productController.description}" required="false"
-						cols="20" rows="3" />
-				</div>
+						<span style="color:#8a6d3b; background-color:#fcf8e3" class="input-group-addon" id="sizing-addon2">Prezzo:</span>
+						<h:inputText class="form-control" aria-describedby="sizing-addon2"
+							value="#{productController.price}" required="true"
+							requiredMessage="Il prezzo e' obbligatorio"
+							converterMessage="Il prezzo deve essere un numero" id="price" />
 
-				<div class="input-group col-lg-6">
+					</div>
+					<div style="margin-bottom: 10px;">
+						<strong><h:message style="color:red;margin-bottom:10px"
+								for="price" /></strong>
+					</div>
 
-					<span class="input-group-addon" id="sizing-addon2">Quantita' disponibile:</span>
-					<h:inputText class="form-control" aria-describedby="sizing-addon2"
-						value="#{productController.quantityAvaiable}" required="true"
-						requiredMessage="La quantita' e' obbligatoria" id="quantity" />
-					<h:message for="quantity" />
-				</div>
+					<div class="input-group col-lg-6">
 
+						<span style="color:#31708f; background-color:#d9edf7" class="input-group-addon" id="sizing-addon2">Descrizione:</span>
+						<h:inputText class="form-control" aria-describedby="sizing-addon2"
+							value="#{productController.description}" required="false"
+							cols="20" rows="3" />
+					</div>
 
-				<div>
-					<h:commandButton class="btn btn-default btn-lg" value="Submit" action="#{productController.createProduct}"/>
-				</div>
+					<div class="input-group col-lg-6">
 
-			</h:form>
+						<span style="color:#a94442; background-color:#f2dede" class="input-group-addon" id="sizing-addon2">Quantita'
+							disponibile:</span>
+						<h:inputText class="form-control" aria-describedby="sizing-addon2"
+							value="#{productController.quantityAvaiable}" required="true"
+							requiredMessage="La quantita' e' obbligatoria" id="quantity" />
+					</div>
+					<div style="margin-bottom: 10px;">
+						<strong><h:message style="color:red;margin-bottom:10px"
+								for="quantity" /></strong>
+					</div>
+
+					<div>
+						<h:commandButton class="btn btn-default btn-lg" value="Submit"
+							action="#{productController.createProduct}" />
+					</div>
+
+				</h:form>
+			</div>
 		</ui:define>
 	</ui:composition>
 </h:body>
