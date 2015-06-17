@@ -23,7 +23,7 @@ public class Product {
 	@Column(nullable = false)
 	private String name;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, unique=true)
 	private String code;
 	
 	private String description;
@@ -38,7 +38,7 @@ public class Product {
 	private String url;
 	
 	
-	//@ManyToMany(mappedBy = "products",cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
+	@ManyToMany(mappedBy = "products",cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
 	private List<Provider> providers;
 
 	

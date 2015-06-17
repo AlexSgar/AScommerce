@@ -13,7 +13,7 @@ import AScommerce.model.Product;
 
 @ManagedBean(name = "productController")
 public class ProductController extends SessionController{
-	
+
 	@ManagedProperty(value="#{param.id}")
 	private Long id;
 	private String name;
@@ -26,32 +26,38 @@ public class ProductController extends SessionController{
 	private Product product;
 
 	private List<Product> products;
-	
+
 	@EJB(beanName="productFacade")
 	private ProductFacade productFacade;
-	
+
 	@PostConstruct
 	public void initProductController(){
 		this.product = (Product) this.getSessionAttribute("currentProduct");
 	}
-	
+
 	public String createProduct(){
-		this.product = this.productFacade.createProduct(name, code, description, price, quantityAvaiable,url);
+		this.product=this.productFacade.findProduct(this.code);
+		if(this.product!=null){
+			this.product.setQuantityAvaiable(this.product.getQuantityAvaiable()+this.quantityAvaiable);
+			this.productFacade.updateProduct(this.product);
+		}
+		else
+			this.product = this.productFacade.createProduct(name, code, description, price, quantityAvaiable,url);
 		return "product";
 	}
-	
+
 	public List<Product> getAllProducts(){
 		return this.productFacade.getAllProducts();
 	}
-	
-	
+
+
 	public String findProduct(){
 		this.product = this.productFacade.findProduct(id);
 		this.setSessionAttribute("currentProduct", this.product);
 		return "product";
 	}
-	
-	
+
+
 	public String getName() {
 		return name;
 	}

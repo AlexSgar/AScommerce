@@ -40,9 +40,15 @@ public class ProductFacade {
 			em.merge(product);
 	}
 
-	public void updateProductQuantity(Product p, int quantity) {
+	public void changeProductQuantityAvaiable(Product p, int quantity) {
 		p.setQuantityAvaiable(p.getQuantityAvaiable()-quantity);
 		
+	}
+
+	public Product findProduct(String code) {
+		TypedQuery<Product> tq= this.em.createQuery("SELECT p FROM Product p WHERE p.code=:code", Product.class);
+		tq.setParameter("code", code);
+		return tq.getSingleResult();
 	}
 
 	
