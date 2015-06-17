@@ -2,16 +2,14 @@ package AScommerce.facade;
 
 
 import java.util.Date;
-import java.util.LinkedList;
+
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
-import AScommerce.model.Customer;
 import AScommerce.model.ImpossibleEvadeOrder;
 import AScommerce.model.Order;
 import AScommerce.model.OrderLine;

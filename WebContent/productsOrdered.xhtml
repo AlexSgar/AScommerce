@@ -23,6 +23,9 @@
 
 								<h:commandLink class="list-group-item" value="Evadi ordine"
 									action="#{orderController.evadeOrder}" />
+									<div style="margin-top:20px; margin-bottom:20px">
+									<strong>${orderController.message}</strong>
+									</div>
 
 
 								<h:link class="list-group-item" outcome="ordersToEvade.xhtml"> Torna agli ordini chiusi</h:link>
