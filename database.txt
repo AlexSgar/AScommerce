@@ -1,0 +1,143 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.4.1
+-- Dumped by pg_dump version 9.4.0
+-- Started on 2015-06-17 15:36:04
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+SET search_path = public, pg_catalog;
+
+--
+-- TOC entry 2048 (class 0 OID 32779)
+-- Dependencies: 172
+-- Data for Name: address; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO address VALUES (901, 'Roma', 'Italia', 'Roma', 'Begonia 12', '00155');
+INSERT INTO address VALUES (51, 'roma', 'Italia', 'roma', 'Petunia 27', '00143');
+INSERT INTO address VALUES (451, 'roma', 'Italia', 'roma', 'Azalea 51', '00143');
+INSERT INTO address VALUES (1601, 'Roma', 'Italia', 'RM', 'Amelia 12', '00181');
+
+
+--
+-- TOC entry 2049 (class 0 OID 32787)
+-- Dependencies: 173
+-- Data for Name: admin; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO admin VALUES (1, 'admin@gmail.com', 'Admin', '123', 'Gialli');
+INSERT INTO admin VALUES (3, 'alesgaraglia@gmail.com', 'Alessandro', '123', 'Sgaraglia');
+INSERT INTO admin VALUES (2, 'ambscaffa@gmail.com', 'Ambra', '123', 'Scaffa');
+
+
+--
+-- TOC entry 2050 (class 0 OID 32795)
+-- Dependencies: 174
+-- Data for Name: customer; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO customer VALUES (1, '1993-11-18', '2015-06-15', 'as@gmail.com', 'Ambra', '123', 'Scaffa', 51);
+INSERT INTO customer VALUES (851, '1992-06-22', '2015-06-17', 'alexsgar@gmail.com', 'Alessandro', '123', 'Sgaraglia', 901);
+INSERT INTO customer VALUES (401, '1969-05-08', '2015-06-16', 'ac@gmail.com', 'Angela', '123', 'Rossi', 451);
+INSERT INTO customer VALUES (1551, '1993-09-20', '2015-06-17', 'ale.supersimpatico@sonoio.it', 'Alessandro', '30', 'superSimpatico', 1601);
+
+
+--
+-- TOC entry 2051 (class 0 OID 32803)
+-- Dependencies: 175
+-- Data for Name: openjpa_sequence_table; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO openjpa_sequence_table VALUES (0, 2001);
+
+
+--
+-- TOC entry 2053 (class 0 OID 32813)
+-- Dependencies: 177
+-- Data for Name: orders; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO orders VALUES (1451, '2015-06-17 12:07:57.606', '2015-06-17 12:07:06.057', NULL, 401, 6438.87061);
+INSERT INTO orders VALUES (1351, '2015-06-17 12:02:12.432', '2015-06-17 12:01:49.95', '2015-06-17 12:09:33.863', 401, 559.5);
+INSERT INTO orders VALUES (1751, '2015-06-17 14:19:50.596', '2015-06-17 14:19:33.759', NULL, 851, 38951.0117);
+INSERT INTO orders VALUES (1752, '2015-06-17 14:20:11.322', '2015-06-17 14:19:59.116', '2015-06-17 14:20:26.693', 851, 139.929993);
+INSERT INTO orders VALUES (1651, '2015-06-17 13:59:41.758', '2015-06-17 13:59:28.172', '2015-06-17 14:00:22.491', 1551, 10999.5);
+INSERT INTO orders VALUES (1901, '2015-06-17 14:45:22.963', '2015-06-17 14:44:29.619', NULL, 1, 1999.66016);
+INSERT INTO orders VALUES (1902, '2015-06-17 14:46:55.86', '2015-06-17 14:45:45.76', NULL, 851, 1109.58997);
+INSERT INTO orders VALUES (1903, '2015-06-17 14:49:01.07', '2015-06-17 14:48:09.888', NULL, 1551, 54189.9883);
+
+
+--
+-- TOC entry 2054 (class 0 OID 32818)
+-- Dependencies: 178
+-- Data for Name: product; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO product VALUES (801, '11432', 'Il regalo perfetto al prezzo perfetto', 'Carota metallica', 38.9900017, 23, 'http://www.dailybest.it/wp-content/uploads/2011/10/630.jpg');
+INSERT INTO product VALUES (806, '120948', 'Per vittorie schiaccianti', 'Incudine', 19.9899998, 80, 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSkP00NzR3kw1I1m4FrqXUQgG6OiHhBZuGYBkX0yFbzO-BzSJBP');
+INSERT INTO product VALUES (805, '928642', 'Per sciare sempre e comunque', 'Macchina crea neve', 219.990005, 11, 'http://fc05.deviantart.net/fs44/i/2009/093/3/0/Wile_E__Coyote_by_TheFrigidMidget.jpg');
+INSERT INTO product VALUES (803, '778392', 'Per essere al passo con i tuoi avversari', 'Monociclo a razzo', 159.990005, 28, 'http://www.dailybest.it/wp-content/uploads/2011/10/264.jpg');
+INSERT INTO product VALUES (101, '358960', 'Integratori vitaminici per i muscoli delle gambe', 'Vitamine', 15, 270, 'http://www.dailybest.it/wp-content/uploads/2011/10/725.jpg ');
+INSERT INTO product VALUES (102, '239088', 'E in un attimo avrai la tua donna ideale', 'Ragazza istantanea', 199.990005, 131, 'http://www.dailybest.it/wp-content/uploads/2011/10/532.jpg ');
+INSERT INTO product VALUES (804, '693028', 'Per inseguimenti esplosivi', 'Razzo', 79.9899979, 37, 'http://www.quotidianopiemontese.it/wp-content/uploads/2014/02/wile-coyote-razzo-acme.jpg');
+INSERT INTO product VALUES (802, '563802', 'Esprimi te stesso in ogni occasione', 'Cartelli', 19.9899998, 1443, 'http://www.dailybest.it/wp-content/uploads/2011/10/343.jpg');
+INSERT INTO product VALUES (251, '768544', 'Per un volo veloce e confortevole', 'Bat costume', 99.9000015, 500, 'http://www.dailybest.it/wp-content/uploads/2011/10/437.jpg');
+
+
+--
+-- TOC entry 2052 (class 0 OID 32808)
+-- Dependencies: 176
+-- Data for Name: orderline; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO orderline VALUES (1401, 4, 15, 1351, 101, 60);
+INSERT INTO orderline VALUES (1402, 5, 99.9000015, 1351, 251, 499.5);
+INSERT INTO orderline VALUES (1501, 20, 219.990005, 1451, 805, 4399.80029);
+INSERT INTO orderline VALUES (1503, 3, 79.9899979, 1451, 804, 239.970001);
+INSERT INTO orderline VALUES (1502, 90, 19.9899998, 1451, 806, 1799.09998);
+INSERT INTO orderline VALUES (1801, 999, 38.9900017, 1751, 801, 38951.0117);
+INSERT INTO orderline VALUES (1802, 7, 19.9899998, 1752, 802, 139.929993);
+INSERT INTO orderline VALUES (1701, 55, 199.990005, 1651, 102, 10999.5);
+INSERT INTO orderline VALUES (1951, 4, 219.990005, 1901, 805, 879.960022);
+INSERT INTO orderline VALUES (1954, 9, 79.9899979, 1901, 804, 719.909973);
+INSERT INTO orderline VALUES (1953, 2, 99.9000015, 1901, 251, 199.800003);
+INSERT INTO orderline VALUES (1952, 1, 199.990005, 1901, 102, 199.990005);
+INSERT INTO orderline VALUES (1955, 3, 19.9899998, 1902, 806, 59.9700012);
+INSERT INTO orderline VALUES (1958, 1, 159.990005, 1902, 803, 159.990005);
+INSERT INTO orderline VALUES (1957, 37, 19.9899998, 1902, 802, 739.630005);
+INSERT INTO orderline VALUES (1956, 10, 15, 1902, 101, 150);
+INSERT INTO orderline VALUES (1959, 1000, 38.9900017, 1903, 801, 38990);
+INSERT INTO orderline VALUES (1960, 1, 199.990005, 1903, 102, 199.990005);
+INSERT INTO orderline VALUES (1961, 1000, 15, 1903, 101, 15000);
+
+
+--
+-- TOC entry 2055 (class 0 OID 32846)
+-- Dependencies: 179
+-- Data for Name: provider; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2056 (class 0 OID 32854)
+-- Dependencies: 180
+-- Data for Name: provider_product; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+-- Completed on 2015-06-17 15:36:04
+
+--
+-- PostgreSQL database dump complete
+--
+
