@@ -68,15 +68,18 @@ public class OrderController extends SessionController {
 	}
 	
 	public String evadeOrder(){
+		String nextPage= "ordersToEvade";
 		try {
 			this.orderFacade.evadeOrder(this.currentOrder);
 			this.message = "Ordine Evaso correttamente";
+			this.removeAttribute("currentOrder");
 		}
 		catch(ImpossibleEvadeOrder e ){
 			this.message = "Impossibile evadere l'ordine,la quantita di \n"+e.getMessage()+"\n non e' disponbile";
+			nextPage= "productsOrdered";
 		}
-		this.removeAttribute("currentOrder");
-		return "productsOrdered";
+		
+		return nextPage;
 	}
 	
 	public String findOrder(){
