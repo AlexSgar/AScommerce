@@ -40,9 +40,12 @@
 								aria-describedby="sizing-addon2"
 								value="#{orderController.quantity}" required="true"
 								requiredMessage="campo obbligatorio"
-								converterMessage="numero non valido" id="qty">
+								converterMessage="numero non valido"
+								validatorMessage="numero non valido" id="qty">
+								 <f:validateLongRange minimum="0"/>
 							</h:inputText>
-
+  
+						
 						</div>
 						<div style="margin-bottom: 10px;">
 							<strong><h:message style="color:red" for="qty" /></strong>
