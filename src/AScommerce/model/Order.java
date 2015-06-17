@@ -42,10 +42,22 @@ public class Order {
 	@JoinColumn(name="order_id")
 	private List<OrderLine> orderLines;
 
+	private Float totale; 
+	
+	
+
 	public Order(Customer customer) {
 		this.creationTime = new Date();
 		this.customer = customer;
 		this.orderLines = new LinkedList<OrderLine>();
+	}
+	
+	public void setTotaleOrdine(){
+		Float tot=new Float(0);
+		for(OrderLine o : this.orderLines){
+			tot+=o.getTotale();
+		}
+		this.totale = tot;
 	}
 
 	public Date getCreationTime() {
@@ -96,6 +108,12 @@ public class Order {
 		return id;
 	}
 	
-	
+	public Float getTotale() {
+		return totale;
+	}
+
+	public void setTotale(Float totale) {
+		this.totale = totale;
+	}
 	
 }

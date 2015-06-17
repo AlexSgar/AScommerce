@@ -53,8 +53,9 @@ public class OrderController extends SessionController {
 		
 	}
 	public String endOrder(){
-		this.orderFacade.createOrder(currentOrder);
+		this.currentOrder.setTotaleOrdine();
 		this.currentOrder.setClosedTime(new Date());
+		this.orderFacade.createOrder(this.currentOrder);
 		this.removeAttribute("currentOrder");
 		this.removeAttribute("currentProduct");
 		return "productsOrdered";

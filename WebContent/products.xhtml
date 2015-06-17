@@ -20,6 +20,12 @@
 					<ul class="list-group col-md-3" style="text-align: center">
 						<h:form>
 							<h:panelGroup
+								rendered="#{orderController.isCustomerOrderingAndCanClose()}">
+								<h:commandLink class="list-group-item" value="Chiudi Ordine"
+									action="#{orderController.endOrder}"></h:commandLink>
+							</h:panelGroup>
+							
+							<h:panelGroup
 								rendered="#{orderController.isCustomerOrderingAProduct()}">
 								<div>
 									<h:commandLink class="list-group-item"
@@ -28,11 +34,7 @@
 								</div>
 							</h:panelGroup>
 
-							<h:panelGroup
-								rendered="#{orderController.isCustomerOrderingAndCanClose()}">
-								<h:commandLink class="list-group-item" value="Chiudi Ordine"
-									action="#{orderController.endOrder}"></h:commandLink>
-							</h:panelGroup>
+							
 						</h:form>
 					</ul>
 

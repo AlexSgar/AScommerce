@@ -1,101 +1,148 @@
 <!DOCTYPE html>
 <html xmlns:h="http://java.sun.com/jsf/html"
- 	  xmlns:f="http://java.sun.com/jsf/core"
- 	  xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-<title>Registrazione</title>
+	<title>Registrazione</title>
 </h:head>
-<h:body>	
-		<ui:composition template="./template.xhtml">
+<h:body>
+	<ui:composition template="./template.xhtml">
 		<ui:define name="content">
-		<div class="sfondo_trasparente" style="width: 70%;margin-left: 15%">
-		<h:form>
-		<div class="input-group ">
-			
-    		<span class="input-group-addon" id="sizing-addon2">Nome:</span>
-    			 <h:inputText class="form-control" aria-describedby="sizing-addon2" value="#{aScommerceController.name }" 
-                     required="true"
-                     requiredMessage="Il nome e' obbligatorio"
-                     id="name"/> <h:message for="name" />
-         </div>        
-    		<div class="input-group ">
-    			<span class="input-group-addon" id="sizing-addon2">Cognome:</span>
-    				 <h:inputText class="form-control" aria-describedby="sizing-addon2" value="#{aScommerceController.surname}" 
-                     required="true"
-                     requiredMessage="Il cognome e' obbligatorio"
-                     id="surname"/> <h:message for="surname" />
+			<div class="sfondo_trasparente" style="width: 70%; margin-left: 15%">
+				<h:form>
+
+					<div class="input-group ">
+
+						<span class="input-group-addon" id="sizing-addon2">Nome:</span>
+						<h:inputText class="form-control" aria-describedby="sizing-addon2"
+							value="#{aScommerceController.name }" required="true"
+							requiredMessage="Il nome e' obbligatorio" id="name" />
+					</div>
+					<div style="margin-bottom: 10px;">
+						<strong><h:message style="color:red;margin-bottom:10px"
+								for="name" /></strong>
+					</div>
+
+					<div class="input-group ">
+						<span class="input-group-addon" id="sizing-addon2">Cognome:</span>
+						<h:inputText class="form-control" aria-describedby="sizing-addon2"
+							value="#{aScommerceController.surname}" required="true"
+							requiredMessage="Il cognome e' obbligatorio" id="surname" />
+					</div>
+					<div style="margin-bottom: 10px;">
+						<strong><h:message style="color:red;margin-bottom:10px"
+								for="surname" /></strong>
+					</div>
+
+					<div class="input-group ">
+						<span class="input-group-addon" id="sizing-addon2">Password:</span>
+						<h:inputSecret class="form-control"
+							aria-describedby="sizing-addon2"
+							value="#{aScommerceController.password}" required="true"
+							requiredMessage="La password e' obbligatoria" id="pass" />
+					</div>
+					<div style="margin-bottom: 10px;">
+						<strong><h:message style="color:red;margin-bottom:10px"
+								for="pass" /></strong>
+					</div>
+
+					<div class="input-group ">
+						<span class="input-group-addon" id="sizing-addon2">Email:</span>
+						<h:inputText class="form-control" aria-describedby="sizing-addon2"
+							value="#{aScommerceController.email}" required="true"
+							requiredMessage="L'email e' obbligatoria" id="email" />
+					</div>
+					<div style="margin-bottom: 10px;">
+						<strong><h:message style="color:red;margin-bottom:10px"
+								for="email" /></strong>
+					</div>
+
+					<div class="input-group ">
+						<span class="input-group-addon" id="sizing-addon2">Data di
+							Nascita:</span>
+						<h:inputText class="form-control" aria-describedby="sizing-addon2"
+							value="#{aScommerceController.dateOfBirth}" required="true"
+							requiredMessage="La data di nascita e' obbligatoria" id="date" />
+					</div>
+					<div style="margin-bottom: 10px;">
+						<strong><h:message style="color:red;margin-bottom:10px"
+								for="date" /></strong>
+					</div>
+
+					<h3 style="margin: 20px">Indirizzo</h3>
+					<div>
+						<div class="input-group ">
+							<span class="input-group-addon" id="sizing-addon2">Via: </span>
+							<h:inputText class="form-control"
+								aria-describedby="sizing-addon2"
+								value="#{aScommerceController.street}" required="true"
+								requiredMessage="L'indirizzo e' obbligatorio" id="street" />
+						</div>
+						<div style="margin-bottom: 10px;">
+							<strong><h:message style="color:red;margin-bottom:10px"
+									for="street" /></strong>
+						</div>
+
+						<div class="input-group ">
+							<span class="input-group-addon" id="sizing-addon2">Cap: </span>
+							<h:inputText class="form-control"
+								aria-describedby="sizing-addon2"
+								value="#{aScommerceController.zipcode}" required="true"
+								requiredMessage="Il cap e' obbligatorio" id="zipcode" />
+						</div>
+						<div style="margin-bottom: 10px;">
+							<strong><h:message style="color:red;margin-bottom:10px"
+									for="zipcode" /></strong>
+						</div>
+					</div>
+
+					<div>
+						<div class="input-group ">
+							<span class="input-group-addon" id="sizing-addon2">Citta':
+							</span>
+							<h:inputText class="form-control"
+								aria-describedby="sizing-addon2"
+								value="#{aScommerceController.city}" required="true"
+								requiredMessage="La citta' e' obbligatoria" id="city" />
+						</div>
+						<div style="margin-bottom: 10px;">
+							<strong><h:message style="color:red;margin-bottom:10px"
+									for="city" /></strong>
+						</div>
+
+						<div class="input-group ">
+							<span class="input-group-addon" id="sizing-addon2">Provincia:
+							</span>
+							<h:inputText class="form-control"
+								aria-describedby="sizing-addon2"
+								value="#{aScommerceController.state}" required="true"
+								requiredMessage="La provincia e' obbligatoria" id="state" />
+						</div>
+						<div style="margin-bottom: 10px;">
+							<strong><h:message style="color:red;margin-bottom:10px"
+									for="state" /></strong>
+						</div>
+						<div class="input-group ">
+							<span class="input-group-addon" id="sizing-addon2">Nazione:
+							</span>
+							<h:inputText class="form-control"
+								aria-describedby="sizing-addon2"
+								value="#{aScommerceController.country}" required="true"
+								requiredMessage="La nazione e' obbligatoria" id="country" />
+						</div>
+						<div style="margin-bottom: 10px;">
+							<strong><h:message style="color:red;margin-bottom:10px"
+									for="country" /></strong>
+						</div>
+					</div>
+
+					<div>
+						<h:commandButton class="btn btn-default btn-lg" value="Submit"
+							action="#{aScommerceController.signUp}" />
+					</div>
+				</h:form>
 			</div>
-			<div class="input-group ">
-			<span class="input-group-addon" id="sizing-addon2">Password:</span> 
-			<h:inputSecret class="form-control" aria-describedby="sizing-addon2" value="#{aScommerceController.password}" 
-                     required="true"
-                     requiredMessage="La password e' obbligatoria"
-                     id="pass"/> <h:message for="pass" />
-			</div>
-			<div class="input-group ">
-			<span class="input-group-addon" id="sizing-addon2">Email:</span> 
-			<h:inputText  class="form-control" aria-describedby="sizing-addon2" value="#{aScommerceController.email}" 
-    				required="true"
-    				requiredMessage="L'email e' obbligatoria"
-                    id="email"/> <h:message for="email" />            
-			</div>
-    		<div class="input-group ">
-    		<span class="input-group-addon" id="sizing-addon2">Data di Nascita:</span>
-    		 <h:inputText class="form-control" aria-describedby="sizing-addon2" value="#{aScommerceController.dateOfBirth}" 
-                     required="true"
-                     requiredMessage="La data di nascita e' obbligatoria"
-                     id="date"/> <h:message for="date" />
-			</div>
-			
-			
-			<h3 style="margin:20px">Indirizzo</h3>
-			<div><div class="input-group ">
-				<span class="input-group-addon" id="sizing-addon2">Via: </span>
-				<h:inputText  class="form-control" aria-describedby="sizing-addon2" value="#{aScommerceController.street}" 
-    				required="true"
-    				requiredMessage="L'indirizzo e' obbligatorio"
-                    id="street"/> <h:message for="street" />
-           	 </div>            
-			
-				<div class="input-group ">
-				 <span class="input-group-addon" id="sizing-addon2">Cap: </span>
-				 <h:inputText class="form-control" aria-describedby="sizing-addon2" value="#{aScommerceController.zipcode}" 
-    					required="true"
-    					requiredMessage="Il cap e' obbligatori"
-              	      id="zipcode"/> <h:message for="zipcode" /> 
-             	</div>
-             </div>
-              
-             <div>             
-			<div class="input-group ">
-			<span class="input-group-addon" id="sizing-addon2">Citta': </span>
-			<h:inputText class="form-control" aria-describedby="sizing-addon2" value="#{aScommerceController.city}" 
-    				required="true"
-    				requiredMessage="La citta' e' obbligatoria"
-                    id="city"/> <h:message for="city" />            
-			</div>
-				<div class="input-group ">
-					<span class="input-group-addon" id="sizing-addon2">Provincia: </span>
-				<h:inputText class="form-control" aria-describedby="sizing-addon2" value="#{aScommerceController.state}" 
-    				required="true"
-    				requiredMessage="La provincia e' obbligatoria"
-                    id="state"/> <h:message for="state" />            
-				</div>
-				<div class="input-group ">
-				<span class="input-group-addon" id="sizing-addon2">Nazione: </span>
-				<h:inputText class="form-control" aria-describedby="sizing-addon2" value="#{aScommerceController.country}" 
-    				required="true"
-    				requiredMessage="La nazione e' obbligatoria"
-                    id="country"/> <h:message for="country" />  
-                </div>          
-			</div>
-    		
-			<div>
-				<h:commandButton class="btn btn-default btn-lg" value="Submit"  action="#{aScommerceController.signUp}"/>
-			</div>
-			</h:form>
-		</div>
 		</ui:define>
-		</ui:composition>
+	</ui:composition>
 </h:body>
 </html>

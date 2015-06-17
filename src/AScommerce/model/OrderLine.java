@@ -20,6 +20,8 @@ public class OrderLine {
 	@Column(nullable = false)
 	private Integer quantity;
 	
+	private Float totale; 
+
 	@Column(nullable = false)
 	@ManyToOne
 	private Product product;
@@ -28,6 +30,7 @@ public class OrderLine {
 		this.quantity = quantity;
 		this.product = product;
 		this.unitPrice = this.product.getPrice();
+		this.totale=this.quantity*this.unitPrice;
 	}
 
 	public Float getUnitPrice() {
@@ -60,6 +63,14 @@ public class OrderLine {
 	
 	
 	
+	public Float getTotale() {
+		return totale;
+	}
+
+	public void setTotale(Float totale) {
+		this.totale = totale;
+	}
+
 	
 
 }

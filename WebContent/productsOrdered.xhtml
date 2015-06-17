@@ -14,58 +14,60 @@
 				<div class="page-header" style="margin-top: 0px">
 					<h1>Ecco i prodotti nell'ordine</h1>
 				</div>
+				<div class="row">
+					<div class="col-md-3" >
+						<ul class="list-group " style="text-align: center">
+							<h:form>
 
-				<div class="row" style="margin-left: 1px">
-					<ul class="list-group col-md-3" style="text-align: center">
-						<h:form>
+								<h:panelGroup rendered="#{orderController.isAdminLogged()}">
 
-							<h:panelGroup rendered="#{orderController.isAdminLogged()}">
-
-								<h:commandLink class="list-group-item" value="Evadi ordine"
-									action="#{orderController.evadeOrder}" />
-									<div style="margin-top:20px; margin-bottom:20px">
-									<strong>${orderController.message}</strong>
-									</div>
+									<h:commandLink class="list-group-item " value="Evadi ordine"
+										action="#{orderController.evadeOrder}" />
 
 
-								<h:link class="list-group-item" outcome="ordersToEvade.xhtml"> Torna agli ordini chiusi</h:link>
+
+									<h:link class="list-group-item " outcome="ordersToEvade.xhtml"> Torna agli ordini chiusi</h:link>
 
 
-							</h:panelGroup>
-						</h:form>
-					</ul>
+								</h:panelGroup>
+							</h:form>
+						</ul>
+					</div>
+					<div class="col-md-9">
+						<strong>${orderController.message}</strong>
+					</div>
 				</div>
 
-				<div class="row">
-					<c:forEach var="orderLine"
-						items="#{orderController.currentOrder.getOrderLines()}">
-						<div class="col-sm-6 col-md-4">
-							<div class="thumbnail">
-								<img  alt="non presente"
-									src="#{orderLine.product.url}"
-									data-holder-rendered="true"
-									style="height: 200px; width: 100%; display: block;"></img>
-								<div class="caption">
-									<h3>${orderLine.product.name}</h3>
-									<p>${orderLine.unitPrice}</p>
-									<p>${orderLine.quantity}</p>
-								</div>
+			<div class="row">
+				<c:forEach var="orderLine"
+					items="#{orderController.currentOrder.getOrderLines()}">
+					<div class="col-sm-6 col-md-4">
+						<div class="thumbnail">
+							<img alt="non presente" src="#{orderLine.product.url}"
+								data-holder-rendered="true"
+								style="height: 200px; width: 100%; display: block;"></img>
+							<div class="caption">
+								<h3>${orderLine.product.name}</h3>
+								<p>Prezzo unitario: ${orderLine.unitPrice}</p>
+								<p>Quantita' ordinata: ${orderLine.quantity}</p>
+								<p>Tot prodotto: ${orderLine.totale}</p>
 							</div>
 						</div>
-					</c:forEach>
+					</div>
+				</c:forEach>
 
-				</div>
-				<div class="row">
-					<h:form>
-						<h:panelGroup rendered="#{orderController.isCustomerLogged()}">
-						<div style="margin-left:5px">
+			</div>
+			<div class="row">
+				<h:form>
+					<h:panelGroup rendered="#{orderController.isCustomerLogged()}">
+						<div style="margin-left: 5px">
 							<h:link class="btn btn-default col-md-3 list-group-item"
-								 outcome="orders.xhtml"> Visualizza ordini</h:link>
+								outcome="orders.xhtml"> Visualizza ordini</h:link>
 						</div>
 
-						</h:panelGroup>
-					</h:form>
-				</div>
+					</h:panelGroup>
+				</h:form>
+			</div>
 			</div>
 		</ui:define>
 	</ui:composition>
